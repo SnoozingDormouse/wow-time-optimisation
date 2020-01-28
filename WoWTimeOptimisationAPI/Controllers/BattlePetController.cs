@@ -22,6 +22,7 @@ namespace WoWTimeOptimisation.Controllers
         [HttpGet]
         public IEnumerable<BattlePet> Get()
         {
+            throw new NotImplementedException();
         }
     }
 }
