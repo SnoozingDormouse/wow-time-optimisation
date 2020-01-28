@@ -1,20 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-//using WoWToolsCore.Services;
-//using WoWToolsCore.Services.BlizzardAPIServices;
-//using WoWToolsCore.Services.InternalServices;
 
 namespace WoWTimeOptimisation
 {
@@ -36,12 +26,6 @@ namespace WoWTimeOptimisation
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            //services.AddHttpClient();
-            //services.AddSingleton<IBlizzardAPIService>(s => new BlizzardAPIService(s.GetService<IHttpClientFactory>(), Configuration["Battlenet:ClientId"], Configuration["Battlenet:ClientSecret"]));
-            //services.AddSingleton<ICharacterInfoCache, CharacterQuestCache>();
-            //services.AddSingleton<ICharacterService, CharacterService>();
-            //services.AddSingleton<IQuestChainService, QuestChainService>();
 
  			services.AddControllers();
 
