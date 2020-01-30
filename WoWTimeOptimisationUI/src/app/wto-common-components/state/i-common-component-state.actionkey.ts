@@ -3,5 +3,5 @@ export interface ICommonComponentActionKey {
 }
 
 export const commonComponentActionKey: ICommonComponentActionKey = {
-    toggleAnimation: '[commonComponentAction] toggleAnimation: '
+    toggleAnimation: '[commonComponentAction] toggleAnimation'
 };

@@ -1,36 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { CreateActions } from '../state/common-component-state.actions';
-import { commonComponentActionKey } from '../state/i-common-component-state.actionkey';
-import { ActionCreator, Store } from '@ngrx/store';
-import { ICommonComponentState } from '../state/i-common-component-state';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { faSync, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+//import { toggleAnimation } from '../state/common-component-state.actions';
+//import { Store } from '@ngrx/store';
+//import { ICommonComponentState } from '../state/i-common-component-state';
+import { Observable, of, PartialObserver } from 'rxjs';
 
 @Component({
     selector: 'common-component-rotating-icon',
     templateUrl: './rotating-icon.component.html',
     styleUrls: ['./rotating-icon.component.css']
 })
-export class RotatingIconComponent implements OnInit {
+export class RotatingIconComponent implements OnInit, OnDestroy {
 
-    private componentName: string;
-    private key: string;
-    public rotatingAction: ActionCreator;
+    public isRotatingObservable$: Observable<boolean>;
+    public isRotatingObserver: PartialObserver<boolean>;
+    public isRotating: boolean;
+    public isRotatingSubscription;
 
-    constructor(
-        store: Store<ICommonComponentState>) {
-    }
+    public faSync: IconDefinition = faSync;
+
+    constructor() { }
 
     ngOnInit() {
-        this.componentName = 'RotatingIconComponent';
-        this.key = commonComponentActionKey.toggleAnimation + this.componentName;
+        this.isRotating = false;
+        this.isRotatingObservable$ = of(false);
+        this.isRotatingObserver = {
+            next: x => { this.isRotating = x; },
+        };
 
-        const created = new CreateActions(this.componentName);
-        console.log(created);
-        if (created) {
-            this.rotatingAction = created.actions[this.key];
-        }
+        this.isRotatingSubscription = this.isRotatingObservable$.subscribe(this.isRotatingObserver);
+    }
+
+    ngOnDestroy() {
+        this.isRotatingSubscription.unsubscribe();
     }
 
     toggleRotation() {
-        // store dispatches the action
+        this.isRotatingObserver.next(!(this.isRotating));
     }
 }
