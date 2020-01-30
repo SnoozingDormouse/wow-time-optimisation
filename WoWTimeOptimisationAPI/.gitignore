@@ -1,6 +1,6 @@
 
 *.cache
 *.lock
-*/.vs/*
+*.vs/*
 */obj/*
 */bin/*
