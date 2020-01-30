@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSync, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-//import { toggleAnimation } from '../state/common-component-state.actions';
-//import { Store } from '@ngrx/store';
-//import { ICommonComponentState } from '../state/i-common-component-state';
 import { Observable, of, PartialObserver } from 'rxjs';
 
 @Component({
@@ -12,30 +9,26 @@ import { Observable, of, PartialObserver } from 'rxjs';
 })
 export class RotatingIconComponent implements OnInit, OnDestroy {
 
-    public isRotatingObservable$: Observable<boolean>;
-    public isRotatingObserver: PartialObserver<boolean>;
     public isRotating: boolean;
     public isRotatingSubscription;
 
     public faSync: IconDefinition = faSync;
 
-    constructor() { }
+    constructor(
+        //private isRotatingObservable$: Observable<boolean>
+    ) { }
 
     ngOnInit() {
-        this.isRotating = false;
-        this.isRotatingObservable$ = of(false);
-        this.isRotatingObserver = {
-            next: x => { this.isRotating = x; },
-        };
-
-        this.isRotatingSubscription = this.isRotatingObservable$.subscribe(this.isRotatingObserver);
+        //this.isRotatingSubscription = this.isRotatingObservable$.subscribe(x => { this.isRotating = x; });
     }
 
     ngOnDestroy() {
-        this.isRotatingSubscription.unsubscribe();
+        //this.isRotatingSubscription.unsubscribe();
     }
 
     toggleRotation() {
-        this.isRotatingObserver.next(!(this.isRotating));
+        // will export it
+        // container will pick up and dispatch to the relevant store component
+        this.isRotating = !(this.isRotating);
     }
 }
