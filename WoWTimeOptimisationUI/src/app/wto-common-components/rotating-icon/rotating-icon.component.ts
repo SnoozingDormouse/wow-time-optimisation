@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSync, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Observable, of, PartialObserver } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observer } from 'rxjs';
+import { SetAPIIsLoadingDataAction, APIState, IAPIState } from 'src/app/state/api-state/api-state.index';
+import { IApplicationState } from 'src/app/state/i-application-state';
 
 @Component({
     selector: 'common-component-rotating-icon',
@@ -9,26 +12,34 @@ import { Observable, of, PartialObserver } from 'rxjs';
 })
 export class RotatingIconComponent implements OnInit, OnDestroy {
 
-    public isRotating: boolean;
-    public isRotatingSubscription;
-
     public faSync: IconDefinition = faSync;
+    public isRotating = false;
+    private subscription;
+    private observer: Observer<IApplicationState>;
 
-    constructor(
-        //private isRotatingObservable$: Observable<boolean>
-    ) { }
+    constructor(private store: Store<IApplicationState>)  {
+
+        this.observer = {
+            next: (state: any) => {
+                this.isRotating = JSON.parse(state.applicationState.apiState.isLoadingData);
+                console.log(this.isRotating);
+            },
+            error: (err: any) => {},
+            complete: () => {}
+        };
+    }
+
+    private isToggled: boolean;
 
     ngOnInit() {
-        //this.isRotatingSubscription = this.isRotatingObservable$.subscribe(x => { this.isRotating = x; });
+        this.subscription = this.store.subscribe(this.observer);
     }
 
     ngOnDestroy() {
-        //this.isRotatingSubscription.unsubscribe();
+        this.subscription.unsubscribe();
     }
 
     toggleRotation() {
-        // will export it
-        // container will pick up and dispatch to the relevant store component
-        this.isRotating = !(this.isRotating);
+        this.store.dispatch( new SetAPIIsLoadingDataAction(JSON.stringify(!this.isRotating)));
     }
 }
