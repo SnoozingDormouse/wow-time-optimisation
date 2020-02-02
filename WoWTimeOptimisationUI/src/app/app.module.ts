@@ -18,14 +18,14 @@ import { environment } from 'src/environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ applicationState: fromApplicationState.reducer /*, APIState: fromAPIState.apiStateReducer */},
+    StoreModule.forRoot({ applicationState: fromApplicationState.reducer },
         {
-            /* runtimeChecks: {
+            runtimeChecks: {
                 strictStateImmutability: true,
                 strictActionImmutability: true,
                 strictStateSerializability: true,
                 strictActionSerializability: true
-            } */
+            }
         }),
 
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
