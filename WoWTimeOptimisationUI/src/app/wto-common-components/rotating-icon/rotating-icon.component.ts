@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSync, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Observer } from 'rxjs';
-import { SetAPIIsLoadingDataAction, APIState, IAPIState } from 'src/app/state/api-state/api-state.index';
+import { SetAPIIsLoadingDataAction } from 'src/app/state/api-state/api-state.index';
 import { IApplicationState } from 'src/app/state/i-application-state';
 
 @Component({
