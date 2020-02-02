@@ -5,9 +5,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import * as fromApplicationState from './state/application-state.index';
+import * as fromAPIState from './state/api-state/api-state.index';
 import {
     WtoCommonComponentsModule
 } from './index-modules';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,17 +18,17 @@ import {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ applicationState: fromApplicationState.reducer },
+    StoreModule.forRoot({ applicationState: fromApplicationState.reducer /*, APIState: fromAPIState.apiStateReducer */},
         {
-            runtimeChecks: {
+            /* runtimeChecks: {
                 strictStateImmutability: true,
                 strictActionImmutability: true,
-                strictStateSerializability: false,
+                strictStateSerializability: true,
                 strictActionSerializability: true
-            }
+            } */
         }),
 
-    StoreDevtoolsModule.instrument({ maxAge: 10 }),
+        !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
 
     // program modules
     WtoCommonComponentsModule

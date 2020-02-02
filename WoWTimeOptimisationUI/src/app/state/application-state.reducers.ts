@@ -1,16 +1,17 @@
-import { Action, createReducer, ActionReducer } from '@ngrx/store';
-import { IApplicationState } from './i-application-state';
+import { ApplicationState } from './i-application-state';
 import * as fromAPIState from './api-state/api-state.index';
 
-const initialApplicationState: IApplicationState = {
+export const initialApplicationState: ApplicationState = {
     isExperimental: 'true',
-    APIstate: fromAPIState.initialAPIState
+    apiState: fromAPIState.initialAPIState
 };
 
-const applicationStateReducer: ActionReducer<IApplicationState, Action> = createReducer(
-    initialApplicationState,
-);
+export function reducer(state: ApplicationState = initialApplicationState, action) {
+    switch (action.type) {
+        case fromAPIState.APIStateType.isLoadingData:
+            return { ...state, apiState: fromAPIState.apiStateReducer(state.apiState, action) };
 
-export function reducer(state: IApplicationState | undefined, action: Action) {
-    return applicationStateReducer;
+        default:
+            return state;
+    }
 }

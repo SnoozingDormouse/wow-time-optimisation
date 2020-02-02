@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSync, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { IAPIState, setAPIIsLoadingData } from 'src/app/state/api-state/api-state.index';
+import { Observer } from 'rxjs';
+import { SetAPIIsLoadingDataAction, APIState, IAPIState } from 'src/app/state/api-state/api-state.index';
 import { IApplicationState } from 'src/app/state/i-application-state';
 
 @Component({
@@ -11,22 +12,27 @@ import { IApplicationState } from 'src/app/state/i-application-state';
 })
 export class RotatingIconComponent implements OnInit, OnDestroy {
 
+    public faSync: IconDefinition = faSync;
     public isRotating = false;
     private subscription;
+    private observer: Observer<IApplicationState>;
 
-    public faSync: IconDefinition = faSync;
+    constructor(private store: Store<IApplicationState>)  {
 
-    constructor(private store: Store<IApplicationState>) { }
+        this.observer = {
+            next: (state: any) => {
+                this.isRotating = JSON.parse(state.applicationState.apiState.isLoadingData);
+                console.log(this.isRotating);
+            },
+            error: (err: any) => {},
+            complete: () => {}
+        };
+    }
+
+    private isToggled: boolean;
 
     ngOnInit() {
-        this.subscription =
-            this.store
-            .select('APIstate')
-            .subscribe( x => {
-                const isLoadingData = x && x.isLoadingData ? JSON.parse(x.isLoadingData) : false;
-                console.log('x:' + isLoadingData);
-                this.isRotating = isLoadingData;
-            });
+        this.subscription = this.store.subscribe(this.observer);
     }
 
     ngOnDestroy() {
@@ -34,8 +40,6 @@ export class RotatingIconComponent implements OnInit, OnDestroy {
     }
 
     toggleRotation() {
-        const spy = this.isRotating;
-        console.log(spy);
-        this.store.dispatch( setAPIIsLoadingData( { isLoadingData: JSON.stringify(this.isRotating) } ));
+        this.store.dispatch( new SetAPIIsLoadingDataAction(JSON.stringify(!this.isRotating)));
     }
 }

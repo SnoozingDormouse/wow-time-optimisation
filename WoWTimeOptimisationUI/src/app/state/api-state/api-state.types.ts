@@ -1,7 +1,3 @@
-export interface IAPIStateType {
-    isLoadingData: string;
-}
-
-export const APIStateType: IAPIStateType  = {
+export const APIStateType  = {
     isLoadingData: '[APIState] IsLoadingData'
 };
