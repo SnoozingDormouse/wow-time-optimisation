@@ -1,7 +1,9 @@
-import { ICommonComponentState } from '../wto-common-components/state/i-common-component-state';
+import { IAPIState, initialAPIState } from './api-state/i-api-state';
 
 // applicationstate is the top-level ngrx state interface
 
 export interface IApplicationState {
-    commonComponentState: ICommonComponentState;
+    isExperimental: string;
+    APIstate: IAPIState;
 }
+
