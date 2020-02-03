@@ -1,8 +1,8 @@
-import { APIState } from './i-api-state';
+import { IAPIState } from './i-api-state';
 import { APIStateType } from './api-state.types';
 import { APIStateAction } from './api-state.index';
 
-export const initialAPIState: APIState = {
+export const initialAPIState: IAPIState = {
     isLoadingData: JSON.stringify(false)
 };
 
@@ -15,7 +15,7 @@ const apiStateReducer = createReducer(
 );
 */
 
-export function apiStateReducer(state: APIState = initialAPIState, action: APIStateAction) {
+export function apiStateReducer(state: IAPIState = initialAPIState, action: APIStateAction) {
     switch (action.type) {
         case APIStateType.isLoadingData:
             return { ...state, isLoadingData: action.payload };

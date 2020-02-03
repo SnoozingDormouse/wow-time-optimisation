@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSync, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Observer } from 'rxjs';
-import { SetAPIIsLoadingDataAction, APIState, IAPIState } from 'src/app/state/api-state/api-state.index';
+import { map } from 'rxjs/internal/operators';
+import { SetAPIIsLoadingDataAction, IAPIState, selectAPIState } from 'src/app/state/api-state/api-state.index';
 import { IApplicationState } from 'src/app/state/i-application-state';
 
 @Component({
@@ -15,24 +16,21 @@ export class RotatingIconComponent implements OnInit, OnDestroy {
     public faSync: IconDefinition = faSync;
     public isRotating = false;
     private subscription;
-    private observer: Observer<IApplicationState>;
+    private observer: Observer<any>;
 
     constructor(private store: Store<IApplicationState>)  {
 
         this.observer = {
-            next: (state: any) => {
-                this.isRotating = JSON.parse(state.applicationState.apiState.isLoadingData);
-                console.log(this.isRotating);
+            next: (state: IAPIState) => {
+                this.isRotating = JSON.parse(state.isLoadingData);
             },
             error: (err: any) => {},
             complete: () => {}
         };
     }
 
-    private isToggled: boolean;
-
     ngOnInit() {
-        this.subscription = this.store.subscribe(this.observer);
+        this.subscription = this.store.pipe(map(state => selectAPIState(state))).subscribe(this.observer);
     }
 
     ngOnDestroy() {
