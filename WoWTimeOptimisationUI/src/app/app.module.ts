@@ -8,6 +8,7 @@ import {
     WtoCommonComponentsModule
 } from './index-modules';
 import { environment } from 'src/environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { environment } from 'src/environments/environment';
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
 
     // program modules
-    WtoCommonComponentsModule
+    WtoCommonComponentsModule,
+
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
