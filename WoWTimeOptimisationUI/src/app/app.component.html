@@ -1,2 +1,9 @@
-<common-component-rotating-icon></common-component-rotating-icon>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation" [fixedInViewport]="true" mode="side" opened>
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,7 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+:host {
+    --main-color: green;
+}
