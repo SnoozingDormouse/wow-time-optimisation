@@ -5,20 +5,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
+    WtoFlyingAnalyserModule,
     WtoCommonComponentsModule
 } from './index-modules';
 import { environment } from 'src/environments/environment';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot({ },
-        {
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        AppRoutingModule,
+        StoreModule.forRoot({ }, {
             runtimeChecks: {
                 strictStateImmutability: true,
                 strictActionImmutability: true,
@@ -29,12 +30,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
 
-    // program modules
-    WtoCommonComponentsModule,
+        MatSidenavModule,
 
-    BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+        // program modules
+        WtoCommonComponentsModule,
+        WtoFlyingAnalyserModule,
+      ],
+    declarations: [
+        AppComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
