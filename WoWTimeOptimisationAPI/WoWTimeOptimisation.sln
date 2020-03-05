@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoWTimeOptimisation", "WoWTimeOptimisation\WoWTimeOptimisation.csproj", "{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlizzardAPIModels", "BlizzardAPIModels\BlizzardAPIModels.csproj", "{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlizzardAPIExternalServices", "BlizzardAPIExternalServices\BlizzardAPIExternalServices.csproj", "{88A76A56-4955-47DF-8DE7-831CCD85C3EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoWTimeOptimisation.Tests", "WoWTimeOptimisation.Tests\WoWTimeOptimisation.Tests.csproj", "{CCB1BEAE-7C61-4178-A534-0B087974E7DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWTimeOptimisation.Store", "WoWTimeOptimisation.Store\WoWTimeOptimisation.Store.csproj", "{BA842923-F411-4013-9D79-F02A9B2315EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoWTimeOptimisation.Store", "WoWTimeOptimisation.Store\WoWTimeOptimisation.Store.csproj", "{BA842923-F411-4013-9D79-F02A9B2315EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWTimeOptimisation", "WoWTimeOptimisation\WoWTimeOptimisation.csproj", "{27961D65-4927-4B9E-913C-1BCF249FA5C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{BA842923-F411-4013-9D79-F02A9B2315EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA842923-F411-4013-9D79-F02A9B2315EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA842923-F411-4013-9D79-F02A9B2315EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27961D65-4927-4B9E-913C-1BCF249FA5C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27961D65-4927-4B9E-913C-1BCF249FA5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27961D65-4927-4B9E-913C-1BCF249FA5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27961D65-4927-4B9E-913C-1BCF249FA5C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
