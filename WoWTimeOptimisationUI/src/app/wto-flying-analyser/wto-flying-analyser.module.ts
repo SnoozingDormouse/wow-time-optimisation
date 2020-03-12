@@ -11,6 +11,8 @@ import {
     WotlkFlyingComponent,
     TbcFlyingComponent,
     AzerothFlyingComponent } from './wto-flying-analyser.index';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { BFAFlyingStateModule } from './bfa-flying/state/bfa-flying.state.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {
       TbcFlyingComponent,
       AzerothFlyingComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatExpansionModule,
+    BFAFlyingStateModule
   ],
   exports: [
       FlyingSummaryComponent

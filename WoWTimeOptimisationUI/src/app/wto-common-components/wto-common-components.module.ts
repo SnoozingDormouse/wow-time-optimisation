@@ -10,13 +10,16 @@ import { RotatingIconComponent } from './rotating-icon/rotating-icon.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavTreeControlComponent } from './sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MaterialsTableComponent } from './materials-table/materials-table.component';
 
 
 @NgModule({
   declarations: [
       RotatingIconComponent,
       HeaderComponent,
-      SidenavTreeControlComponent
+      SidenavTreeControlComponent,
+      MaterialsTableComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { RouterModule } from '@angular/router';
     ApiStateModule,
     MatTreeModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   exports: [
     RotatingIconComponent,
