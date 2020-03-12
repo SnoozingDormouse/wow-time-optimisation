@@ -10,8 +10,8 @@ import { RotatingIconComponent } from './rotating-icon/rotating-icon.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavTreeControlComponent } from './sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
-//import { NestedExpansionPanelsWithTablesComponent } from './nested-expansion-panels-with-tables/nested-expansion-panels-with-tables.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MaterialsTableComponent } from './materials-table/materials-table.component';
 
 
 @NgModule({
@@ -19,7 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
       RotatingIconComponent,
       HeaderComponent,
       SidenavTreeControlComponent,
-      //NestedExpansionPanelsWithTablesComponent
+      MaterialsTableComponent,
   ],
   imports: [
     CommonModule,

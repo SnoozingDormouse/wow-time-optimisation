@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { CharacterModule } from './characters/character.module';
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import { RouterModule } from '@angular/router';
         MatSidenavModule,
 
         // program modules
+        CharacterModule,
         WtoCommonComponentsModule,
         WtoFlyingAnalyserModule,
       ],
