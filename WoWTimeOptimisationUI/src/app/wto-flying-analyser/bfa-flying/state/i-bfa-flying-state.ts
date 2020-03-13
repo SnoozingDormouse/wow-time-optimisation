@@ -1,11 +1,14 @@
+import { ICharacter } from 'src/app/characters/state/i-character-state';
+
 export interface IBFAFlyingState {
     steps: Array<IStep>;
+    characterSteps: Array<ICharacterStepStatus>;
 }
 
 export interface IStep {
-    id: number;
+    criteriaId: number;
     name: string;
-    steptype: IStepType
+    steptype: IStepType;
 }
 
 export enum IStepType {
@@ -13,4 +16,15 @@ export enum IStepType {
     Criteria = 1,
     Reputation = 2,
     QuestServices = 3
+}
+
+export interface IStepStatus {
+    criteriaId: number;
+    amount: number;
+    isComplete: boolean;
+}
+
+export interface ICharacterStepStatus {
+    characterName: string;
+    characterSteps: Array<IStepStatus>;
 }

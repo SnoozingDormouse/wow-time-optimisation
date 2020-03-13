@@ -11,7 +11,6 @@ import { HeaderComponent } from './header/header.component';
 import { SidenavTreeControlComponent } from './sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MaterialsTableComponent } from './materials-table/materials-table.component';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { MaterialsTableComponent } from './materials-table/materials-table.compo
       RotatingIconComponent,
       HeaderComponent,
       SidenavTreeControlComponent,
-      MaterialsTableComponent,
   ],
   imports: [
     CommonModule,

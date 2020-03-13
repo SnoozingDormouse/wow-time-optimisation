@@ -1,7 +1,32 @@
 <H1>Battle for Azeroth Flying</H1>
 
-<ng-container>
-    <li *ngFor="let step of steps">
-        ID: {{step.id}} - Name: {{step.name}} - StepType: {{step.steptype}}
-    </li>
-</ng-container>
+<table mat-table [dataSource]="dataSource"> <!--</table> class="mat-elevation-z8">-->
+
+    <ng-container matColumnDef="criteria">
+        <th mat-header-cell *matHeaderCellDef> Achievement/QuestLine </th>
+        <td mat-cell *matCellDef="let element"> {{ element.criteria.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="char1">
+        <th mat-header-cell *matHeaderCellDef> Character 1 </th>
+        <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.char1completed">
+                {{ element.char1completed.iscomplete }}<br>
+                {{ element.char1completed.amount }}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="char2">
+        <th mat-header-cell *matHeaderCellDef> Character 2 </th>
+        <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.char2completed">
+                {{ element.char2completed.iscomplete }}<br>
+                {{ element.char2completed.amount }}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['criteria', 'char1', 'char2']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['criteria', 'char1', 'char2'];"></tr>
+</table>
