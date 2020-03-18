@@ -17,7 +17,7 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
     private observer: Observer<any>;
 
     public displayedColumns: string[];
-    public dataSource: Array<IBFAFlyingViewModel>;
+    public dataSource: IBFAFlyingViewModel;
 
     constructor(private store: Store<IApplicationState>,
         private viewModel: BFAFlyingViewModel)  {
@@ -25,9 +25,11 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
         this.observer = {
             next: (state: IBFAFlyingState) => {
                 this.dataSource = this.viewModel.populateViewModel(state.steps, state.characterSteps);
+                this.displayedColumns = ['criteria'];
+                this.dataSource.headers.forEach(h => this.displayedColumns.push(h));
+
                 console.log(this.dataSource);
-                //this.displayedColumns = [ 'StepName'];
-                //this.steps.map(x => x.characterStatus.forEach(y => this.displayedColumns.push(y.characterName)));
+                console.log(this.displayedColumns);
             },
             error: (err: any) => {},
             complete: () => {}

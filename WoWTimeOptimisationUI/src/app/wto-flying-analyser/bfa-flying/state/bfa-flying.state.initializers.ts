@@ -49,7 +49,26 @@ const characterStatusStep2: ICharacterStepStatus = {
     }]
 };
 
+const characterStatusStep3: ICharacterStepStatus = {
+    characterName: 'Numfundle',
+    characterSteps:  [{
+        criteriaId: 0,
+        amount: 1,
+        isComplete: false
+    },
+    {
+        criteriaId: 1,
+        amount: 111,
+        isComplete: false
+    },
+    {
+        criteriaId: 2,
+        amount: 111,
+        isComplete: false
+    }]
+};
+
 export const initialBfaFlyingState: IBFAFlyingState = {
     steps: testSteps,
-    characterSteps: [ characterStatusStep1 , characterStatusStep2 ]
+    characterSteps: [ characterStatusStep1 , characterStatusStep2, characterStatusStep3 ]
 };
