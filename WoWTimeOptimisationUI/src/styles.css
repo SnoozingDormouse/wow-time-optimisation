@@ -1,9 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 .mat-sidenav {
     width: 20%;
+}
+
+.right-align {
+    text-align: right;
+    align-content: flex-end;
+}
+
+.fill-space {
+    flex: 1 1 auto;
 }
