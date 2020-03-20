@@ -1,3 +1,3 @@
 export const APIStateType  = {
-    isLoadingData: '[APIState] IsLoadingData'
+    isLoadingData: '[APIState] IsLoadingData',
 };

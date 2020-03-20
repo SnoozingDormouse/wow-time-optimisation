@@ -24,7 +24,7 @@ interface ICharCompleted {
 
 @Injectable()
 export class BFAFlyingViewModel {
-    public populateViewModel(steps: IStep[], characterSteps: ICharacterStepStatus[]): IBFAFlyingViewModel {
+        public populateViewModel(steps: IStep[], characterSteps: ICharacterStepStatus[]): IBFAFlyingViewModel {
         const viewModel: Array<IBFAFlyingViewNode> = [];
         const characters: Array<string> = [];
 

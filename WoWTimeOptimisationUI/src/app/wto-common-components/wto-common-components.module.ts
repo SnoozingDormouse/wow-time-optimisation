@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ApiStateModule } from '../state/api-state/api-state.module';
 import { RotatingIconComponent } from './rotating-icon/rotating-icon.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavTreeControlComponent } from './sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { AngularMaterialModule } from 'src/angular-material.module'
+import { UIStateModule } from '../state/ui-state/ui.state.module';
 
 
 @NgModule({
   declarations: [
       RotatingIconComponent,
       HeaderComponent,
-      SidenavTreeControlComponent,
+      SidenavTreeControlComponent
   ],
   imports: [
     CommonModule,
@@ -25,10 +23,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     RouterModule,
     FontAwesomeModule,
     ApiStateModule,
-    MatTreeModule,
-    MatIconModule,
-    MatButtonModule,
-    MatExpansionModule
+    UIStateModule,
+    AngularMaterialModule
   ],
   exports: [
     RotatingIconComponent,
