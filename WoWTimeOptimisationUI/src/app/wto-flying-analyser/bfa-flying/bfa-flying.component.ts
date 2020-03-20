@@ -6,6 +6,7 @@ import { IBFAFlyingState, selectBFAFlyingState, IStep, ICharacterStepStatus } fr
 import { map } from 'rxjs/internal/operators';
 import { IBFAFlyingViewModel, BFAFlyingViewModel } from './bfa-flying.viewmodel';
 import { SetUIStateAction, IUIState } from 'src/app/state/ui-state/ui.state.index';
+import { BfaFlyingService } from './bfa-flying.service';
 
 @Component({
   selector: 'app-bfa-flying',
@@ -24,7 +25,8 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
     public dataSource: IBFAFlyingViewModel;
 
     constructor(private store: Store<IApplicationState>,
-        private viewModel: BFAFlyingViewModel)  {
+        private viewModel: BFAFlyingViewModel,
+        private bfaService: BfaFlyingService)  {
 
         this.observer = {
             next: (state: IBFAFlyingState) => {
@@ -48,6 +50,7 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
 
         const uiState: IUIState = { title: this.title, isMenuOpen: this.isMenuOpen };
         this.store.dispatch( new SetUIStateAction(uiState));
+        this.bfaService.getStages();
     }
 
     ngOnDestroy() {

@@ -15,6 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { BFAFlyingStateModule } from './bfa-flying/state/bfa-flying.state.module';
 import { BFAFlyingViewModel } from './bfa-flying/bfa-flying.viewmodel';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BFAFlyingViewModel } from './bfa-flying/bfa-flying.viewmodel';
     CommonModule,
     MatExpansionModule,
     MatTableModule,
+    HttpClientModule,
     BFAFlyingStateModule
   ],
   providers: [
