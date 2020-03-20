@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using WoWTimeOptimisation.Models;
 
 namespace WoWTimeOptimisation.Controllers
 {
@@ -15,14 +12,38 @@ namespace WoWTimeOptimisation.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "BFA" };
         }
 
-        // GET: api/Flying/5 <-- this will be the characterId in the database (use Blizzard's CharacterId's)
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        // GET: api/Flying/{Expansion}
+        [HttpGet("{expansion}", Name = "Get")]
+        public ActionResult GetStages(string expansion)
         {
-            return "value";
+            var stages = new List<Stage>
+            {
+                new Stage
+                {
+                    Id = 0,
+                    Name = "Test 1 - from API",
+                    Type = 0
+                },
+
+                new Stage
+                {
+                    Id = 1,
+                    Name = "Test 2 - from API",
+                    Type = 0
+                },
+
+                new Stage
+                {
+                    Id = 2,
+                    Name = "Test 3 - from API",
+                    Type = 0
+                }
+            };
+
+            return Ok(stages);
         }
     }
 }

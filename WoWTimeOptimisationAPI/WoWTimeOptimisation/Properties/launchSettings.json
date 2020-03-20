@@ -20,7 +20,7 @@
     "WoWTimeOptimisation": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "wowtimeoptimisation",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

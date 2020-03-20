@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WoWTimeOptimisation.Flying
+namespace WoWTimeOptimisation.Models
 {
-    public class Step
+    public class Stage
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public StepType Type { get; set; }
+        public StageType Type { get; set; }
     }
 }
