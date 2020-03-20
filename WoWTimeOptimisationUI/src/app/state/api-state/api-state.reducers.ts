@@ -6,15 +6,6 @@ export const initialAPIState: IAPIState = {
     isLoadingData: JSON.stringify(false)
 };
 
-// const isLoadingDataAction: IAPIState = (state: IAPIState, { isLoadingData }) => ({ ...state, isLoadingData });
-
-/*
-const apiStateReducer = createReducer(
-    initialAPIState,
-    on( loadingDataAction, isLoadingDataAction)
-);
-*/
-
 export function apiStateReducer(state: IAPIState = initialAPIState, action: APIStateAction) {
     switch (action.type) {
         case APIStateType.isLoadingData:

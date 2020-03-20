@@ -1,9 +1,12 @@
 <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation" [fixedInViewport]="true" mode="side" opened>
-        <app-header></app-header>
+    <mat-sidenav #sidenav role="navigation" [fixedInViewport]="true" mode="side" [opened]="isMenuOpen">
         <app-sidenav></app-sidenav>
     </mat-sidenav>
-    <mat-sidenav-content>
+
+    <div class="header"><app-header></app-header></div>
+
+    <div class="body">
         <router-outlet></router-outlet>
-    </mat-sidenav-content>
+    </div>
+
 </mat-sidenav-container>
