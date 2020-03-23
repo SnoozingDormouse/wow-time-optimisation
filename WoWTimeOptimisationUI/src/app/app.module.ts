@@ -13,6 +13,7 @@ import { AngularMaterialModule } from 'src/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { CharacterModule } from './characters/character.module';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CharacterModule } from './characters/character.module';
                 strictActionSerializability: true
             }
         }),
+        EffectsModule.forRoot([]),
 
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
 

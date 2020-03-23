@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IApplicationState } from 'src/app/state/i-application-state';
 import { Store } from '@ngrx/store';
-import { Observer, Observable } from 'rxjs';
-import { IBFAFlyingState, selectBFAFlyingState, IStep, ICharacterStepStatus } from './state/bfa-flying.state.index';
+import { Observer } from 'rxjs';
+import { IBFAFlyingState, selectBFAFlyingState, BFAFlyingActionLabels } from './state/bfa-flying.state.index';
 import { map } from 'rxjs/internal/operators';
 import { IBFAFlyingViewModel, BFAFlyingViewModel } from './bfa-flying.viewmodel';
 import { SetUIStateAction, IUIState } from 'src/app/state/ui-state/ui.state.index';
-import { BfaFlyingService } from './bfa-flying.service';
+import { BFAFlyingStateEffects } from './state/bfa-flying.state.effects';
 
 @Component({
   selector: 'app-bfa-flying',
@@ -26,7 +26,7 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
 
     constructor(private store: Store<IApplicationState>,
         private viewModel: BFAFlyingViewModel,
-        private bfaService: BfaFlyingService)  {
+        private bfaEffects: BFAFlyingStateEffects)  {
 
         this.observer = {
             next: (state: IBFAFlyingState) => {
@@ -47,10 +47,10 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
         this.subscription = this.store.pipe(map(state => selectBFAFlyingState(state))).subscribe(this.observer);
 
         this.title = 'Battle for Azeroth Flying';
-
         const uiState: IUIState = { title: this.title, isMenuOpen: this.isMenuOpen };
         this.store.dispatch( new SetUIStateAction(uiState));
-        this.bfaService.getStages();
+
+        this.store.dispatch({ type: BFAFlyingActionLabels.loadCriteriaSteps });
     }
 
     ngOnDestroy() {

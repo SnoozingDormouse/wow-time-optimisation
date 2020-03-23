@@ -1,12 +1,18 @@
-import { Action } from '@ngrx/store';
-import { BFAFlyingStateType } from './bfa-flying.state.types';
+import { createAction, props } from '@ngrx/store';
+import { BFAFlyingActionLabels } from './bfa-flying.state.types';
+import { IStep, ICharacterStepStatus } from './i-bfa-flying-state';
 
 
-export class SetBFAFlyingStateAction implements Action {
-    readonly type = BFAFlyingStateType.initialisingSteps
+export const initialiseAction = createAction(BFAFlyingActionLabels.initialise);
 
-    constructor(public payload: string) {}
-}
+export const updateCriteriaStepsAction = createAction(
+    BFAFlyingActionLabels.updateCriteriaSteps,
+    props<{ payload: IStep[]}>()
+);
 
-export type BFAFlyingStateAction = SetBFAFlyingStateAction;
+export const updateCharacterStepsAction = createAction(
+    BFAFlyingActionLabels.updateCharacterSteps,
+    props<{ payload: ICharacterStepStatus[]}>()
+);
+
 

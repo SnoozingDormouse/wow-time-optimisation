@@ -14,19 +14,19 @@ export const initialApplicationState: IApplicationState = {
 
 export function reducer(state: IApplicationState = initialApplicationState, action) {
     switch (action.type) {
-        case fromAPIState.APIStateType.isLoadingData:
-            return { ...state, apiState: fromAPIState.apiStateReducer(state.apiState, action) };
+    //     case fromAPIState.APIStateType.isLoadingData:
+    //         return { ...state, apiState: fromAPIState.apiStateReducer(state.apiState, action) };
 
-        case fromUIState.uiStateType.initialisingUIState:
-            return { ...state, uiState: fromUIState.uiStateReducer(state.uiState, action) };
+    //     case fromUIState.uiStateType.initialisingUIState:
+    //         return { ...state, uiState: fromUIState.uiStateReducer(state.uiState, action) };
 
-        case fromBFAFlyingState.BFAFlyingStateType.initialisingSteps:
-            return { ...state, bfaFlyingState: fromBFAFlyingState.bfaFlyingStateReducer(state.bfaFlyingState, action) };
+    //     case fromBFAFlyingState.BFAFlyingActionLabels.initialise.BFAFlyingAction.initialise:
+    //         return { ...state, bfaFlyingState: fromBFAFlyingState.bfaFlyingStateReducer(state.bfaFlyingState, action) };
 
-        case fromCharacterState.CharacterStateType.characters:
-            return { ...state, characters: fromCharacterState.characterStateReducer(state.characters, action) };
+    //     case fromCharacterState.CharacterStateType.characters:
+    //         return { ...state, characters: fromCharacterState.characterStateReducer(state.characters, action) };
 
-        default:
-            return state;
+         default:
+             return state;
     }
 }

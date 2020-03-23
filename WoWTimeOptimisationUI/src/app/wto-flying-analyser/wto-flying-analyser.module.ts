@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { BFAFlyingStateModule } from './bfa-flying/state/bfa-flying.state.module';
 import { BFAFlyingViewModel } from './bfa-flying/bfa-flying.viewmodel';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { BFAFlyingStateEffects } from './bfa-flying/state/bfa-flying.state.effects';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatExpansionModule,
     MatTableModule,
     HttpClientModule,
-    BFAFlyingStateModule
+    BFAFlyingStateModule,
+    EffectsModule.forFeature([ BFAFlyingStateEffects ])
   ],
   providers: [
     BFAFlyingViewModel
