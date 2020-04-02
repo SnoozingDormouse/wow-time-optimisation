@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace WoWTimeOptimisation.Models
 {
-    public class Stage
+    public class CharacterStage
     {
         public int CriteriaId { get; set; }
-        public string Name { get; set; }
-        public StageType Type { get; set; }
+        public int Amount { get; set; }
+        public bool IsComplete { get; set; }
     }
 }

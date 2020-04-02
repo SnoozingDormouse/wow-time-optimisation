@@ -5,6 +5,6 @@ export interface ICharacterState {
 export interface ICharacter {
     name: string;
     realm: string;
-    level: number;
-    blizzardId: number;
+    level?: number;
+    blizzardId?: number;
 }

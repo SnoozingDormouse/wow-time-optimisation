@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { CharacterModule } from './characters/character.module';
 import { EffectsModule } from '@ngrx/effects';
+import * as fromBFAFlyingState from 'src/app/wto-flying-analyser/bfa-flying/state/bfa-flying.state.index';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { EffectsModule } from '@ngrx/effects';
                 strictActionSerializability: true
             }
         }),
+        StoreModule.forFeature( fromBFAFlyingState.featureKey, fromBFAFlyingState.bfaFlyingStateReducer ),
         EffectsModule.forRoot([]),
 
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],

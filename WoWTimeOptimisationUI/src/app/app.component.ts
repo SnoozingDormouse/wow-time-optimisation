@@ -23,7 +23,6 @@ export class AppComponent implements OnInit, OnDestroy{
             next: (state: IUIState) => {
                 this.title = state.title;
                 this.isMenuOpen = state.isMenuOpen;
-                console.log(this.title);
             },
             error: (err: any) => {},
             complete: () => {}

@@ -2,11 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IApplicationState } from 'src/app/state/i-application-state';
 import { Store } from '@ngrx/store';
 import { Observer } from 'rxjs';
-import { IBFAFlyingState, selectBFAFlyingState, BFAFlyingActionLabels } from './state/bfa-flying.state.index';
+import { IBFAFlyingState, selectBFAFlyingState, BFAFlyingActionLabels, loadCharacterSteps } from './state/bfa-flying.state.index';
 import { map } from 'rxjs/internal/operators';
 import { IBFAFlyingViewModel, BFAFlyingViewModel } from './bfa-flying.viewmodel';
 import { SetUIStateAction, IUIState } from 'src/app/state/ui-state/ui.state.index';
 import { BFAFlyingStateEffects } from './state/bfa-flying.state.effects';
+import { ICharacter } from 'src/app/characters/state/i-character-state';
+
 
 @Component({
   selector: 'app-bfa-flying',
@@ -34,8 +36,8 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
                 this.displayedColumns = ['criteria'];
                 this.dataSource.headers.forEach(h => this.displayedColumns.push(h));
 
-                console.log(this.dataSource);
-                console.log(this.displayedColumns);
+                //console.log(this.dataSource);
+                //console.log(this.displayedColumns);
             },
             error: (err: any) => {},
             complete: () => {}
@@ -51,6 +53,9 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
         this.store.dispatch( new SetUIStateAction(uiState));
 
         this.store.dispatch({ type: BFAFlyingActionLabels.loadCriteriaSteps });
+
+        const character: ICharacter = { realm: 'moonglade', name: 'khoria'};
+        this.store.dispatch( loadCharacterSteps( { character }));
     }
 
     ngOnDestroy() {
