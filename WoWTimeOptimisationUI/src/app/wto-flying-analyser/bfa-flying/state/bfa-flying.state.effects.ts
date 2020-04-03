@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, catchError, switchMap, exhaustMap } from 'rxjs/internal/operators';
+import { map, catchError, switchMap, exhaustMap, concatMap } from 'rxjs/internal/operators';
 import { BFAFlyingActionLabels } from './bfa-flying.state.types';
 import * as BFAFlyingActions from './bfa-flying.state.actions';
 import { IStep, ICharacterStepStatus } from './i-bfa-flying-state';
@@ -30,7 +30,7 @@ export class BFAFlyingStateEffects {
     loadCharacterSteps$ = createEffect(
             () => this.actions$.pipe(
                 ofType<LoadCharacterSteps>(BFAFlyingActionLabels.loadCharacterSteps),
-                switchMap(
+                concatMap(
                     ({ character }) =>
                         {
                             console.log(character);

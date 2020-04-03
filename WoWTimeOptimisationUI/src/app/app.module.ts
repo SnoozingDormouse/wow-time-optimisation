@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { CharacterModule } from './characters/character.module';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromBFAFlyingState from 'src/app/wto-flying-analyser/bfa-flying/state/bfa-flying.state.index';
+import * as fromCharacterState from 'src/app/characters/state/character-state.index';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import * as fromBFAFlyingState from 'src/app/wto-flying-analyser/bfa-flying/stat
             }
         }),
         StoreModule.forFeature( fromBFAFlyingState.featureKey, fromBFAFlyingState.bfaFlyingStateReducer ),
+        StoreModule.forFeature( fromCharacterState.featureKey, fromCharacterState.characterStateReducer ),
         EffectsModule.forRoot([]),
 
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],

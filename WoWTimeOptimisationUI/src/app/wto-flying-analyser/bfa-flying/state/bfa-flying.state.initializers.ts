@@ -16,59 +16,8 @@ const testSteps: Array<IStep> = [{
         steptype: IStepType.Achievement
     }];
 
-const characterStatusStep1: ICharacterStepStatus = {
-    characterName: 'Khoria',
-    characterSteps:  [{
-        criteriaId: 0,
-        amount: 12,
-        isComplete: true
-    },
-    {
-        criteriaId: 1,
-        amount: 10,
-        isComplete: false
-    }]
-};
-
-const characterStatusStep2: ICharacterStepStatus = {
-    characterName: 'Khorylle',
-    characterSteps:  [{
-        criteriaId: 0,
-        amount: 1,
-        isComplete: false
-    },
-    {
-        criteriaId: 1,
-        amount: 111,
-        isComplete: false
-    },
-    {
-        criteriaId: 2,
-        amount: 111,
-        isComplete: false
-    }]
-};
-
-const characterStatusStep3: ICharacterStepStatus = {
-    characterName: 'Numfundle',
-    characterSteps:  [{
-        criteriaId: 0,
-        amount: 1,
-        isComplete: false
-    },
-    {
-        criteriaId: 1,
-        amount: 111,
-        isComplete: false
-    },
-    {
-        criteriaId: 2,
-        amount: 111,
-        isComplete: false
-    }]
-};
 
 export const initialBfaFlyingState: IBFAFlyingState = {
     steps: testSteps,
-    characterSteps: [ characterStatusStep1 , characterStatusStep2, characterStatusStep3 ]
+    characterSteps: [ ]
 };

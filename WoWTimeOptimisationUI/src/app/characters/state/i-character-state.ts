@@ -7,4 +7,5 @@ export interface ICharacter {
     realm: string;
     level?: number;
     blizzardId?: number;
+    active?: boolean;
 }

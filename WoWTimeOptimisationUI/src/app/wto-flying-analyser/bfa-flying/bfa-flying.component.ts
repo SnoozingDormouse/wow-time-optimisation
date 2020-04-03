@@ -7,7 +7,8 @@ import { map } from 'rxjs/internal/operators';
 import { IBFAFlyingViewModel, BFAFlyingViewModel } from './bfa-flying.viewmodel';
 import { SetUIStateAction, IUIState } from 'src/app/state/ui-state/ui.state.index';
 import { BFAFlyingStateEffects } from './state/bfa-flying.state.effects';
-import { ICharacter } from 'src/app/characters/state/i-character-state';
+import { ICharacter, ICharacterState } from 'src/app/characters/state/i-character-state';
+import { selectCharacterState, selectActiveCharactersState } from 'src/app/characters/state/character-state.index';
 
 
 @Component({
@@ -21,7 +22,10 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
 
     private subscription;
     private menuOpenSubscription;
+    private characterSubscription;
+
     private observer: Observer<any>;
+    private characters: ICharacter[];
 
     public displayedColumns: string[];
     public dataSource: IBFAFlyingViewModel;
@@ -46,6 +50,8 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.menuOpenSubscription = this.store.select(a => a.uiState.isMenuOpen).subscribe(v => { this.isMenuOpen = v } );
+        this.characterSubscription =
+            this.store.pipe(map(state => selectActiveCharactersState(state))).subscribe(v => { this.characters = v.characters })
         this.subscription = this.store.pipe(map(state => selectBFAFlyingState(state))).subscribe(this.observer);
 
         this.title = 'Battle for Azeroth Flying';
@@ -54,8 +60,9 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
 
         this.store.dispatch({ type: BFAFlyingActionLabels.loadCriteriaSteps });
 
-        const character: ICharacter = { realm: 'moonglade', name: 'khoria'};
-        this.store.dispatch( loadCharacterSteps( { character }));
+        this.characters.filter(c => c.active).forEach(character => {
+            this.store.dispatch( loadCharacterSteps( { character }));
+        });
     }
 
     ngOnDestroy() {
