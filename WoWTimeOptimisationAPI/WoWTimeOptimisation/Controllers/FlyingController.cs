@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WoWTimeOptimisation.Models;
+using WoWTimeOptimisation.Services;
 
 namespace WoWTimeOptimisation.Controllers
 {
@@ -8,6 +10,17 @@ namespace WoWTimeOptimisation.Controllers
     [ApiController]
     public class FlyingController : ControllerBase
     {
+        private IAchievementRepository _achievementRepository;
+        private ICharacterAchievementRepository _characterAchievementRepository;
+
+        public FlyingController(
+            IAchievementRepository achievementRepository,
+            ICharacterAchievementRepository characterAchievementRepository)
+        {
+            _achievementRepository = achievementRepository;
+            _characterAchievementRepository = characterAchievementRepository;
+        }
+
         // GET: api/Flying
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,30 +32,17 @@ namespace WoWTimeOptimisation.Controllers
         [HttpGet("{expansion}")]
         public ActionResult GetStages(string expansion)
         {
-            var stages = new List<Stage>
+            string category = "flying";
+            string goal = _achievementRepository.GetGoalKey(category, expansion);
+            IEnumerable<int> achievements = _achievementRepository.GetAchievementsByGoal(goal);
+
+            var stages = new List<Stage>();
+
+            foreach(int achievement in achievements)
             {
-                new Stage
-                {
-                    CriteriaId = 0,
-                    Name = "Test 1 - from API",
-                    Type = 0
-                },
-
-                new Stage
-                {
-                    CriteriaId = 1,
-                    Name = "Test 2 - from API",
-                    Type = 0
-                },
-
-                new Stage
-                {
-                    CriteriaId = 2,
-                    Name = "Test 3 - from API",
-                    Type = 0
-                }
-            };
-
+                stages.AddRange(_achievementRepository.GetStagesForAchievement(achievement));
+            }
+            
             return Ok(stages);
         }
 
@@ -50,24 +50,22 @@ namespace WoWTimeOptimisation.Controllers
         [HttpGet("{expansion}/{realm}/{character}")]
         public ActionResult GetCharacterProgress(string expansion, string realm, string character)
         {
+            int blizzardId = _characterAchievementRepository.GetBlizzardIdForCharacter("", realm, character);
+            string category = "flying";
+            string goal = _achievementRepository.GetGoalKey(category, expansion);
+            IEnumerable<int> achievements = _achievementRepository.GetAchievementsByGoal(goal);
+
+            var characterSteps = new List<CharacterStage>();
+
+            foreach (int achievement in achievements)
+            {
+                characterSteps.AddRange(_characterAchievementRepository.GetCharacterStagesForAchievement(achievement, blizzardId));
+            }
+
             var characterProgress = new CharacterStatus
             {
                 CharacterName = character,
-                CharacterSteps = new List<CharacterStage>
-                {
-                    new CharacterStage
-                    {
-                        CriteriaId = 0,
-                        Amount = 999,
-                        IsComplete = true
-                    },
-                    new CharacterStage
-                    {
-                        CriteriaId = 1,
-                        Amount = 0,
-                        IsComplete = false
-                    }
-                }
+                CharacterSteps = characterSteps
             };
 
             return Ok(characterProgress);

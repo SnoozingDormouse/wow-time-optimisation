@@ -1,7 +1,7 @@
 import { ICharacter, ICharacterState } from './i-character-state';
 
 const defaultCharacter1: ICharacter = {
-    name: 'Khoria',
+    name: 'Khorylle',
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
