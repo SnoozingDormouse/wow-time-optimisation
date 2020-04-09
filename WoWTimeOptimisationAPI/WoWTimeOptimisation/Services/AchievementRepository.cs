@@ -15,6 +15,18 @@ namespace WoWTimeOptimisation.Services
             _connectionString = connectionString;
         }
 
+        public string GetAchievementName(int achievement)
+        {
+            var commandText = "dbo.getAchievementName";
+            var query =
+                ExecuteCommand(
+                    _connectionString,
+                    c => c.Query<string>(commandText, new { @AchievementId = achievement }, commandType: System.Data.CommandType.StoredProcedure))
+                .SingleOrDefault();
+
+            return query;
+        }
+
         public IEnumerable<int> GetAchievementsByGoal(string goalKey)
         {
             var commandText = "dbo.getAchievementsForGoal";

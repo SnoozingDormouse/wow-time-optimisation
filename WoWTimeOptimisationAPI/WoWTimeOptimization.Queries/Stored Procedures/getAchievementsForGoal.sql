@@ -6,8 +6,9 @@ BEGIN
 	DECLARE @goalId INT = (SELECT Id FROM dbo.Goals WHERE [Name] = @GoalKey)
 
 	SELECT 
-		DISTINCT AchievementId 
-	FROM dbo.GoalCriterias gc 
-	WHERE gc.GoalId = @goalId
+		AchievementId 
+	FROM dbo.OrderedGoalAchievement o 
+	WHERE o.GoalId = @goalId
+	ORDER BY o.[Order] ASC
 
 END

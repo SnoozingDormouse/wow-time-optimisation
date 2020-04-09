@@ -1,8 +1,13 @@
 import { ICharacter } from 'src/app/characters/state/i-character-state';
 
 export interface IBFAFlyingState {
-    steps: Array<IStep>;
+    achievements: Array<IAchievement>;
     characterSteps: Array<ICharacterStepStatus>;
+}
+
+export interface IAchievement {
+    achievement: string;
+    stages: Array<IStep>;
 }
 
 export interface IStep {

@@ -12,4 +12,5 @@ AS
 	WHERE 
 		gc.AchievementId = @AchievementId
 		AND cc.CharacterId = @BlizzardId
+		AND c.ParentId IS NOT NULL
 	ORDER BY c.ParentId

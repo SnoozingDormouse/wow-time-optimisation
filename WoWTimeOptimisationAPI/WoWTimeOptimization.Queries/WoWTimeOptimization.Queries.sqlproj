@@ -57,11 +57,15 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Stored Procedures\getCriteriaForAchievement.sql" />
     <Build Include="Stored Procedures\getAchievementsForGoal.sql" />
     <Build Include="Stored Procedures\getCharacterProgressByCriteriaForAchievement.sql" />
     <Build Include="Stored Procedures\getBlizzardIdForCharacter.sql" />
+    <Build Include="Stored Procedures\getAchievementName.sql" />
+    <Build Include="Tables\AnnotatedCriteriaDescription.sql" />
+    <Build Include="Tables\OrderedGoalAchievement.sql" />
   </ItemGroup>
 </Project>

@@ -14,10 +14,13 @@ import {
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { BFAFlyingStateModule } from './bfa-flying/state/bfa-flying.state.module';
-import { BFAFlyingViewModel } from './bfa-flying/bfa-flying.viewmodel';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { BFAFlyingStateEffects } from './bfa-flying/state/bfa-flying.state.effects';
+import { AchievementViewModel } from './bfa-flying/bfa-flying.viewmodel';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -37,13 +40,18 @@ import { BFAFlyingStateEffects } from './bfa-flying/state/bfa-flying.state.effec
     MatTableModule,
     HttpClientModule,
     BFAFlyingStateModule,
+    FontAwesomeModule,
     EffectsModule.forFeature([ BFAFlyingStateEffects ])
   ],
   providers: [
-    BFAFlyingViewModel
+    AchievementViewModel
   ],
   exports: [
       FlyingSummaryComponent
   ]
 })
-export class WtoFlyingAnalyserModule { }
+export class WtoFlyingAnalyserModule {
+    constructor() {
+        library.add(faCheckCircle);
+    }
+}

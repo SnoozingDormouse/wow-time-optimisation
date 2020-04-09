@@ -1,12 +1,18 @@
-import { IStep, ICharacterStepStatus } from './state/i-bfa-flying-state';
+import { IBFAFlyingState } from './state/i-bfa-flying-state';
 import { Injectable } from '@angular/core';
 
-export interface IBFAFlyingViewModel {
-    headers: string[];
-    datasource: Array<IBFAFlyingViewNode>
+export interface IAchievementViewModel {
+    achievements: Array<IAchievementTableViewModel>
 }
 
-interface IBFAFlyingViewNode {
+export interface IAchievementTableViewModel {
+    title: string;
+    headers: string[];
+    displayedColumns: string[];
+    datasource: ICriteriaRowViewNode[];
+}
+
+interface ICriteriaRowViewNode {
     criteria: ICriteria;
     charscompleted: Array<ICharCompleted>;
 }
@@ -23,38 +29,52 @@ interface ICharCompleted {
 }
 
 @Injectable()
-export class BFAFlyingViewModel {
-        public populateViewModel(steps: IStep[], characterSteps: ICharacterStepStatus[]): IBFAFlyingViewModel {
-        const viewModel: Array<IBFAFlyingViewNode> = [];
-        const characters: Array<string> = [];
+export class AchievementViewModel {
 
-        steps.map(x => {
-            viewModel.push(
+    public populateViewModel(state: IBFAFlyingState): IAchievementViewModel {
+
+        const viewModel: IAchievementViewModel = { achievements: [] };
+
+        state.achievements.forEach(ach =>
+        {
+            const viewTableModel: Array<ICriteriaRowViewNode> = [];
+            const characters: Array<string> = [];
+            const displayedColumns: Array<string> = [ 'criteria' ];
+
+            ach.stages.map(x => {
+                viewTableModel.push(
+                {
+                    criteria: { criteriaId: x.criteriaId, name: x.name },
+                    charscompleted: [],
+                })});
+
+            let index = 0;
+
+            state.characterSteps.forEach(namedCharacter =>
+                {
+                    characters.push(namedCharacter.characterName);
+                    displayedColumns.push(namedCharacter.characterName);
+
+                    namedCharacter.characterSteps
+                    .map(cs => {
+                        viewTableModel
+                        .filter( v => v.criteria.criteriaId === cs.criteriaId)
+                        .map(e => e.charscompleted[index] =
+                            { criteriaId: cs.criteriaId, iscomplete: cs.isComplete, amount: cs.amount });
+                    });
+                    index++;
+                }
+            );
+
+            viewModel.achievements.push(
             {
-                criteria: { criteriaId: x.criteriaId, name: x.name },
-                charscompleted: [],
-            })});
+                title: ach.achievement,
+                headers: characters,
+                displayedColumns,
+                datasource: viewTableModel
+            });
+        });
 
-        let index = 0;
-
-        characterSteps.forEach(namedCharacter =>
-            {
-                characters.push(namedCharacter.characterName);
-
-                namedCharacter.characterSteps
-                .map(cs => {
-                    viewModel
-                    .filter( v => v.criteria.criteriaId === cs.criteriaId)
-                    .map(e => e.charscompleted[index] =
-                        { criteriaId: cs.criteriaId, iscomplete: cs.isComplete, amount: cs.amount });
-                });
-                index++;
-            }
-        );
-
-        return {
-            headers: characters,
-            datasource: viewModel
-        }
+        return viewModel;
     }
 }

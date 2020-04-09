@@ -16,6 +16,9 @@ import { CharacterModule } from './characters/character.module';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromBFAFlyingState from 'src/app/wto-flying-analyser/bfa-flying/state/bfa-flying.state.index';
 import * as fromCharacterState from 'src/app/characters/state/character-state.index';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 @NgModule({
@@ -44,6 +47,9 @@ import * as fromCharacterState from 'src/app/characters/state/character-state.in
         CharacterModule,
         WtoCommonComponentsModule,
         WtoFlyingAnalyserModule,
+
+        // Font-awesome
+        FontAwesomeModule
       ],
     declarations: [
         AppComponent

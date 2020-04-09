@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { Observer } from 'rxjs';
 import { IBFAFlyingState, selectBFAFlyingState, BFAFlyingActionLabels, loadCharacterSteps } from './state/bfa-flying.state.index';
 import { map } from 'rxjs/internal/operators';
-import { IBFAFlyingViewModel, BFAFlyingViewModel } from './bfa-flying.viewmodel';
 import { SetUIStateAction, IUIState } from 'src/app/state/ui-state/ui.state.index';
 import { BFAFlyingStateEffects } from './state/bfa-flying.state.effects';
-import { ICharacter, ICharacterState } from 'src/app/characters/state/i-character-state';
-import { selectCharacterState, selectActiveCharactersState } from 'src/app/characters/state/character-state.index';
+import { ICharacter } from 'src/app/characters/state/i-character-state';
+import { selectActiveCharactersState } from 'src/app/characters/state/character-state.index';
+import { AchievementViewModel, IAchievementViewModel } from './bfa-flying.viewmodel';
+import { IconDefinition, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -28,20 +30,18 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
     private characters: ICharacter[];
 
     public displayedColumns: string[];
-    public dataSource: IBFAFlyingViewModel;
+    public dataSource: IAchievementViewModel;
+
+    public faCheckCircle: IconDefinition = faCheckCircle;
 
     constructor(private store: Store<IApplicationState>,
-        private viewModel: BFAFlyingViewModel,
+        private viewModel: AchievementViewModel,
         private bfaEffects: BFAFlyingStateEffects)  {
 
         this.observer = {
             next: (state: IBFAFlyingState) => {
-                this.dataSource = this.viewModel.populateViewModel(state.steps, state.characterSteps);
-                this.displayedColumns = ['criteria'];
-                this.dataSource.headers.forEach(h => this.displayedColumns.push(h));
-
-                //console.log(this.dataSource);
-                //console.log(this.displayedColumns);
+                this.dataSource = this.viewModel.populateViewModel(state);
+                console.log(this.dataSource);
             },
             error: (err: any) => {},
             complete: () => {}
@@ -58,7 +58,7 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
         const uiState: IUIState = { title: this.title, isMenuOpen: this.isMenuOpen };
         this.store.dispatch( new SetUIStateAction(uiState));
 
-        this.store.dispatch({ type: BFAFlyingActionLabels.loadCriteriaSteps });
+        this.store.dispatch({ type: BFAFlyingActionLabels.loadAchievements });
 
         this.characters.filter(c => c.active).forEach(character => {
             this.store.dispatch( loadCharacterSteps( { character }));

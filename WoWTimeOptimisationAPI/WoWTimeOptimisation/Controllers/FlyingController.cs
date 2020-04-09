@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WoWTimeOptimisation.Models;
 using WoWTimeOptimisation.Services;
@@ -36,14 +35,20 @@ namespace WoWTimeOptimisation.Controllers
             string goal = _achievementRepository.GetGoalKey(category, expansion);
             IEnumerable<int> achievements = _achievementRepository.GetAchievementsByGoal(goal);
 
-            var stages = new List<Stage>();
-
-            foreach(int achievement in achievements)
+            var achievementStages = new List<AchievementStatus>();
+            foreach (int achievement in achievements)
             {
-                stages.AddRange(_achievementRepository.GetStagesForAchievement(achievement));
+                var achievementName = _achievementRepository.GetAchievementName(achievement);
+                var stages = _achievementRepository.GetStagesForAchievement(achievement);
+                achievementStages.Add(
+                    new AchievementStatus
+                    {
+                        Achievement = achievementName,
+                        Stages = stages
+                    }); ;
             }
-            
-            return Ok(stages);
+
+            return Ok(achievementStages);
         }
 
         // GET: api/Flying/{Expansion}/{Realm}/{Character}
