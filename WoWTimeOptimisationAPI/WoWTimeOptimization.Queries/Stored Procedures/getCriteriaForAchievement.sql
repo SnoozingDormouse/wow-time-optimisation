@@ -9,5 +9,3 @@ AS
 	INNER JOIN dbo.Criteria c ON gc.CriteriaId = c.Id
 	LEFT JOIN dbo.AnnotatedCriteriaDescription acd on c.Id = acd.CriteriaId
 	WHERE gc.AchievementId = @AchievementId
-	AND c.ParentId IS NOT NULL
-	ORDER BY c.ParentId

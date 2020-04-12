@@ -5,7 +5,7 @@ const defaultCharacter1: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: true
+    active: false
 }
 
 const defaultCharacter2: ICharacter = {
@@ -21,7 +21,7 @@ const defaultCharacter3: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: false
+    active: true
 }
 
 const defaultCharacter4: ICharacter = {
@@ -29,7 +29,7 @@ const defaultCharacter4: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: false
+    active: true
 }
 
 const defaultCharacter5: ICharacter = {
@@ -37,7 +37,7 @@ const defaultCharacter5: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: false
+    active: true
 }
 
 const defaultCharacter6: ICharacter = {
@@ -53,7 +53,7 @@ const defaultCharacter7: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: true
+    active: false
 }
 
 const defaultCharacter8: ICharacter = {
@@ -61,7 +61,7 @@ const defaultCharacter8: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: true
+    active: false
 }
 
 const defaultCharacter9: ICharacter = {
@@ -69,7 +69,7 @@ const defaultCharacter9: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: true
+    active: false
 }
 
 const defaultCharacter10: ICharacter = {
@@ -85,7 +85,7 @@ const defaultCharacter11: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: true
+    active: false
 }
 
 const defaultCharacter12: ICharacter = {
@@ -93,7 +93,23 @@ const defaultCharacter12: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
+    active: false
+}
+
+const defaultCharacter13: ICharacter = {
+    name: 'Flamingpink',
+    realm: 'Moonglade',
+    level: 120,
+    blizzardId: 12345,
     active: true
+}
+
+const defaultCharacter14: ICharacter = {
+    name: 'Flamingheck',
+    realm: 'Moonglade',
+    level: 120,
+    blizzardId: 12345,
+    active: false
 }
 
 export const initialCharacterState: ICharacterState = {
@@ -110,6 +126,8 @@ export const initialCharacterState: ICharacterState = {
         defaultCharacter10,
         defaultCharacter11,
         defaultCharacter12,
+        defaultCharacter13,
+        defaultCharacter14
     ]
 };
 
