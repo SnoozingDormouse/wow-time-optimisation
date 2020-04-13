@@ -18,25 +18,44 @@ const bfaFlyingReducer = createReducer(
 );
 
 function UpdateAchievementCriteria(state: any, achievements: IAchievement[]): Array<IAchievement>  {
+
     const a: Array<IAchievement> = _.cloneDeep(state.achievements);
-    let altered = false;
 
     achievements.forEach( ach =>
     {
+        let altered = false;
+        /*
         if (a) {
             a.forEach(element => {
                 if (element.achievement.toLowerCase() === ach.achievement.toLowerCase())
                 {
-                    element.stages = ach.stages;
+                    let achStages = 0;
+                    for( let index = 0; index < element.stages.length; index++) {
+                        if (index < ach.stages.length) {
+                            element.stages[index] = ach.stages[index];
+                            achStages++;
+                        }
+                        else
+                        {
+                            element.stages.pop();
+                        }
+                    }
+
+                    for (let index = achStages; index < ach.stages.length; index++) {
+                        element.stages.push(ach.stages[index]);
+                    }
+
                     altered = true;
                 }
             });
         }
+        */
 
         if (altered === false) {
             a.push(ach);
         }
     });
+
 
     return a;
 }

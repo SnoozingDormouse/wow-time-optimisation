@@ -44,7 +44,7 @@ export class AchievementViewModel {
             ach.stages.map(x => {
                 viewTableModel.push(
                 {
-                    criteria: { criteriaId: x.criteriaId, name: x.name },
+                    criteria: { criteriaId: x.criteriaId, name: x.description },
                     charscompleted: [],
                 })});
 

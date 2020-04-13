@@ -12,7 +12,11 @@ export interface IAchievement {
 
 export interface IStep {
     criteriaId: number;
-    name: string;
+    amount: number;
+    achievementId: number;
+    description: string;
+    faction: number;
+    parentId: number;
     steptype: IStepType;
 }
 
