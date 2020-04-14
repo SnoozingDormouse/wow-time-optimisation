@@ -31,6 +31,8 @@ export class AppComponent implements OnInit, OnDestroy{
 
     ngOnInit() {
         this.subscription = this.store.pipe(map(state => selectUIState(state))).subscribe(this.observer);
+
+        // dispatch request to update the information on the server for the selected characters
     }
 
     ngOnDestroy() {

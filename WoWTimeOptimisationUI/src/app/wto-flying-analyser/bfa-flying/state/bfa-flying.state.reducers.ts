@@ -23,37 +23,7 @@ function UpdateAchievementCriteria(state: any, achievements: IAchievement[]): Ar
 
     achievements.forEach( ach =>
     {
-        let altered = false;
-        /*
-        if (a) {
-            a.forEach(element => {
-                if (element.achievement.toLowerCase() === ach.achievement.toLowerCase())
-                {
-                    let achStages = 0;
-                    for( let index = 0; index < element.stages.length; index++) {
-                        if (index < ach.stages.length) {
-                            element.stages[index] = ach.stages[index];
-                            achStages++;
-                        }
-                        else
-                        {
-                            element.stages.pop();
-                        }
-                    }
-
-                    for (let index = achStages; index < ach.stages.length; index++) {
-                        element.stages.push(ach.stages[index]);
-                    }
-
-                    altered = true;
-                }
-            });
-        }
-        */
-
-        if (altered === false) {
-            a.push(ach);
-        }
+        a.push(ach);
     });
 
 

@@ -21,14 +21,14 @@ namespace WoWTimeOptimisation
         public IConfiguration Configuration { get; }
         public String ConnectionString { get; }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly string AllowSpecificOrigins = "_allowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-               options.AddPolicy(MyAllowSpecificOrigins,
+               options.AddPolicy(AllowSpecificOrigins,
                    builder =>
                    {
                        builder.WithOrigins("http://localhost:4200");
@@ -80,7 +80,7 @@ namespace WoWTimeOptimisation
             app.UseRouting();
 			app.UseStaticFiles();
             app.UseAuthorization();
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(AllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {

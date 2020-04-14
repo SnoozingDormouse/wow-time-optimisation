@@ -1,11 +1,22 @@
-import { Action } from '@ngrx/store';
-import { CharacterStateType } from './character-state.reducers';
+import { createAction, props, union } from '@ngrx/store';
+import { CharacterActionLabels } from './character-state.types';
+import { ICharacter } from './i-character-state';
 
-export class SetCharactersAction implements Action {
-    readonly type = CharacterStateType.characters;
+export const initialiseCharacters = createAction(CharacterActionLabels.initialise);
 
-    constructor(public payload: string) {}
-}
+export const loadCharacterOnServer = createAction(
+    CharacterActionLabels.loadCharacterOnServer,
+    props<{ character: ICharacter }>()
+);
 
-export type CharacterStateAction = SetCharactersAction;
+export const updateCharacter = createAction(
+    CharacterActionLabels.updateCharacter,
+    props<{ character: ICharacter }>()
+);
+
+const characterActions = union(
+    { loadCharacterOnServer }
+);
+
+export type CharacterAction = typeof characterActions;
 
