@@ -8,7 +8,7 @@ export * from './character-state.reducers';
 export * from './character-state.selectors';
 export * from './character-state.initializers';
 
-export const featureKey = 'characters';
+export const featureKey = 'characterCollection';
 
-export const selectCharactersState = createFeatureSelector<IApplicationState, ICharacterState>('characters');
-export const selectActiveCharactersState = createFeatureSelector<IApplicationState, ICharacterState>('characters');
+export const selectCharactersState = createFeatureSelector<IApplicationState, ICharacterState>('characterCollection');
+export const selectActiveCharactersState = createFeatureSelector<IApplicationState, ICharacterState>('characterCollection');

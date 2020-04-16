@@ -9,7 +9,7 @@ export const initialApplicationState: IApplicationState = {
     apiState: fromAPIState.initialAPIState,
     uiState: fromUIState.initialUIState,
     bfaFlyingState: fromBFAFlyingState.initialBfaFlyingState,
-    characters: fromCharacterState.initialCharacterState,
+    characterCollection: fromCharacterState.initialCharacterState,
 };
 
 export function reducer(state: IApplicationState = initialApplicationState, action) {
