@@ -10,5 +10,5 @@ export interface IApplicationState {
     apiState: IAPIState;
     uiState: IUIState;
     bfaFlyingState: IBFAFlyingState;
-    characters: ICharacterState;
+    characterCollection: ICharacterState;
 }

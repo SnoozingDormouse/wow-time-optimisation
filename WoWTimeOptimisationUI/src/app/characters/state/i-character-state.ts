@@ -1,4 +1,5 @@
 export interface ICharacterState {
+    faction: number;
     characters: Array<ICharacter>
 }
 

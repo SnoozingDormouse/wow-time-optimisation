@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy{
         this.store.pipe(map(state => selectActiveCharactersState(state))).subscribe(v => { this.characters = v.characters })
 
         // dispatch request to update the information on the server for the selected characters
-        this.characters.filter(c => c.active).forEach(character => {
+        this.characters.forEach(character => {
             this.store.dispatch( loadCharacterOnServer( { character }));
         });
     }
