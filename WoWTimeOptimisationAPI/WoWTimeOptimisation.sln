@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoWTimeOptimisation", "WoWTimeOptimisation\WoWTimeOptimisation.csproj", "{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlizzardAPIModels", "BlizzardAPIModels\BlizzardAPIModels.csproj", "{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlizzardAPIExternalServices", "BlizzardAPIExternalServices\BlizzardAPIExternalServices.csproj", "{88A76A56-4955-47DF-8DE7-831CCD85C3EB}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WoWTimeOptimization.Queries", "WoWTimeOptimization.Queries\WoWTimeOptimization.Queries.sqlproj", "{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +17,12 @@ Global
 		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8BD89BB-0A29-4D35-8879-210AF5B2F5DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B4FF603-07F7-4B51-87FC-408B1C76A9F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88A76A56-4955-47DF-8DE7-831CCD85C3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88A76A56-4955-47DF-8DE7-831CCD85C3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88A76A56-4955-47DF-8DE7-831CCD85C3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88A76A56-4955-47DF-8DE7-831CCD85C3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1E087C-DA40-43ED-8424-31A43A6D7EC8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

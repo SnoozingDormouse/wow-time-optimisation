@@ -3,8 +3,13 @@ export interface ICharacterState {
 }
 
 export interface ICharacter {
+    useraccountId?: number;
     name: string;
     realm: string;
-    level: number;
-    blizzardId: number;
+    faction?: number;
+    characterClass?: string;
+    level?: number;
+    blizzardId?: number;
+    lastUpdatedDateTime?: Date;
+    active?: boolean;
 }

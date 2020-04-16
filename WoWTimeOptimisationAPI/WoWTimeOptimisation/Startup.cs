@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using WoWTimeOptimisation.Services;
 
 namespace WoWTimeOptimisation
 {
@@ -13,13 +15,27 @@ namespace WoWTimeOptimisation
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConnectionString = Configuration["Database:ConnectionString"] ?? throw new ArgumentNullException("Database:ConnectionString");
         }
 
         public IConfiguration Configuration { get; }
+        public String ConnectionString { get; }
+
+        readonly string AllowSpecificOrigins = "_allowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+               options.AddPolicy(AllowSpecificOrigins,
+                   builder =>
+                   {
+                       builder.WithOrigins("http://localhost:4200");
+                       builder.WithOrigins("http://localhost:51754");
+                   });
+            });
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -27,7 +43,10 @@ namespace WoWTimeOptimisation
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
- 			services.AddControllers();
+            services.AddTransient<IAchievementRepository>(s => new AchievementRepository(ConnectionString));
+            services.AddTransient<ICharacterAchievementRepository>(s => new CharacterAchievementRepository(ConnectionString));
+
+            services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -59,10 +78,9 @@ namespace WoWTimeOptimisation
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
 			app.UseStaticFiles();
-
             app.UseAuthorization();
+            app.UseCors(AllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {

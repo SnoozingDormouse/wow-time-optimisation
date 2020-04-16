@@ -11,8 +11,6 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +18,7 @@
     "WoWTimeOptimisation": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "wowtimeoptimisation",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

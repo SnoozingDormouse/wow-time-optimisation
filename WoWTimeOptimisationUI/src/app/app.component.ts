@@ -4,6 +4,7 @@ import { IApplicationState } from './state/i-application-state';
 import { Observer } from 'rxjs';
 import { map } from 'rxjs/internal/operators';
 import { IUIState, selectUIState } from './state/ui-state/ui.state.index';
+import { loadCharacterOnServer, ICharacter, selectActiveCharactersState } from './characters/state/character-state.index';
 
 
 @Component({
@@ -17,13 +18,15 @@ export class AppComponent implements OnInit, OnDestroy{
     private subscription;
     private observer: Observer<any>;
 
+    private characterSubscription;
+    private characters: ICharacter[];
+
     constructor(private store: Store<IApplicationState>) {
 
         this.observer = {
             next: (state: IUIState) => {
                 this.title = state.title;
                 this.isMenuOpen = state.isMenuOpen;
-                console.log(this.title);
             },
             error: (err: any) => {},
             complete: () => {}
@@ -32,9 +35,19 @@ export class AppComponent implements OnInit, OnDestroy{
 
     ngOnInit() {
         this.subscription = this.store.pipe(map(state => selectUIState(state))).subscribe(this.observer);
+
+        // get the characters
+        this.characterSubscription =
+        this.store.pipe(map(state => selectActiveCharactersState(state))).subscribe(v => { this.characters = v.characters })
+
+        // dispatch request to update the information on the server for the selected characters
+        this.characters.filter(c => c.active).forEach(character => {
+            this.store.dispatch( loadCharacterOnServer( { character }));
+        });
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.characterSubscription.unsubscribe();
     }
 }

@@ -1,13 +1,22 @@
 import { ICharacter } from 'src/app/characters/state/i-character-state';
 
 export interface IBFAFlyingState {
-    steps: Array<IStep>;
-    characterSteps: Array<ICharacterStepStatus>;
+    achievements: Array<IAchievement>;
+    characterInfo: Array<ICharacterStepStatus>;
+}
+
+export interface IAchievement {
+    achievement: string;
+    stages: Array<IStep>;
 }
 
 export interface IStep {
     criteriaId: number;
-    name: string;
+    amount: number;
+    achievementId: number;
+    description: string;
+    faction: number;
+    parentId: number;
     steptype: IStepType;
 }
 
@@ -21,7 +30,7 @@ export enum IStepType {
 export interface IStepStatus {
     criteriaId: number;
     amount: number;
-    isComplete: boolean;
+    isCompleted: boolean;
 }
 
 export interface ICharacterStepStatus {

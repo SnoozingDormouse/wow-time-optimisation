@@ -1,29 +1,30 @@
-import { ICharacter, ICharacterState } from './i-character-state';
-import { CharacterStateAction } from './character-state.index';
+import { ICharacterState } from './i-character-state';
+import { createReducer, on, Action } from '@ngrx/store';
+import * as CharacterActions from './character-state.actions';
+import { initialCharacterState } from './character-state.initializers';
 
 
-export const CharacterStateType  = {
-    characters: '[CharacterState] Character Related Actions'
-};
+const characterReducer = createReducer(
+    initialCharacterState,
+    on(CharacterActions.updateCharacter, (state: ICharacterState, { character }) => ({
+            ...state,
+            characters: [
+                ...state.characters,
+                {
+                    useraccountId: character.useraccountId,
+                    name: character.name,
+                    realm: character.realm,
+                    faction: character.faction,
+                    characterClass: character.characterClass,
+                    level: character.level,
+                    blizzardId: character.blizzardId,
+                    lastUpdatedDateTime: character.lastUpdatedDateTime,
+                    active: false,
+                }
+            ]
+        }))
+);
 
-const defaultCharacter: ICharacter = {
-    name: 'Khoria',
-    realm: 'Moonglade',
-    level: 120,
-    blizzardId: 12345
-}
-
-export const initialCharacterState: ICharacterState = {
-    characters: [ defaultCharacter ]
-};
-
-
-export function characterStateReducer(state: ICharacterState = initialCharacterState, action: CharacterStateAction) {
-    switch (action.type) {
-        case CharacterStateType.characters:
-            return { ...state, characters: action.payload };
-
-        default:
-            return state;
-    }
+export function characterStateReducer(state: ICharacterState | undefined, action: Action) {
+    return characterReducer(state, action);
 }
