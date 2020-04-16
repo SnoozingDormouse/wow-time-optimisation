@@ -5,7 +5,7 @@ const defaultCharacter1: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: false
+    active: true
 }
 
 const defaultCharacter2: ICharacter = {
@@ -101,7 +101,7 @@ const defaultCharacter13: ICharacter = {
     realm: 'Moonglade',
     level: 120,
     blizzardId: 12345,
-    active: true
+    active: false
 }
 
 const defaultCharacter14: ICharacter = {

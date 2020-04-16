@@ -23,9 +23,9 @@ export function reducer(state: IApplicationState = initialApplicationState, acti
     //     case fromBFAFlyingState.BFAFlyingActionLabels.initialise.BFAFlyingAction.initialise:
     //         return { ...state, bfaFlyingState: fromBFAFlyingState.bfaFlyingStateReducer(state.bfaFlyingState, action) };
 
-    //     case fromCharacterState.CharacterStateType.characters:
-    //         return { ...state, characters: fromCharacterState.characterStateReducer(state.characters, action) };
-
+/*          case fromCharacterState.CharacterStateType.characters:
+             return { ...state, characters: fromCharacterState.characterStateReducer(state.characters, action) };
+ */
          default:
              return state;
     }

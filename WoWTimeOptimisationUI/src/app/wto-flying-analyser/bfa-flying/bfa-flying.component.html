@@ -12,7 +12,7 @@
                 <th mat-header-cell *matHeaderCellDef>{{ header }}</th>
                 <td mat-cell *matCellDef="let element">
                     <ng-container *ngIf="element.charscompleted[achievement.headers.indexOf(header)]">
-                        <div *ngIf="(element.charscompleted[achievement.headers.indexOf(header)].iscomplete); else elseBlock">
+                        <div *ngIf="(element.charscompleted[achievement.headers.indexOf(header)].isCompleted); else elseBlock">
                             <span><fa-icon [icon]="faCheckCircle" [styles]="{'color': 'green'}"></fa-icon></span></div>
                         <ng-template #elseBlock>
                             <div *ngIf="(element.charscompleted[achievement.headers.indexOf(header)].amount > 0)">{{ element.charscompleted[achievement.headers.indexOf(header)].amount }}</div>

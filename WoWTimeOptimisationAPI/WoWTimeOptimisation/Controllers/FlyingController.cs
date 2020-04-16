@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WoWTimeOptimisation.Models;
@@ -48,13 +49,20 @@ namespace WoWTimeOptimisation.Controllers
         public ActionResult GetCharacterProgress(string expansion, string realm, string character)
         {
             int blizzardId = _characterAchievementRepository.GetBlizzardIdForCharacter("", realm, character);
+            
             string category = "flying";
             string goal = _achievementRepository.GetGoalKey(category, expansion);
             IEnumerable<int> achievements = _achievementRepository.GetAchievementsByGoal(goal);
 
+            var allAchievements = new List<int>();
+
+            allAchievements.AddRange(achievements);
+            var descendents = achievements.SelectMany(ach => _achievementRepository.GetDescendentAchievementsForAchievement(ach));
+            allAchievements.AddRange(descendents);
+
             var characterSteps = new List<CharacterStage>();
 
-            foreach (int achievement in achievements)
+            foreach (int achievement in allAchievements)
             {
                 characterSteps.AddRange(_characterAchievementRepository.GetCharacterStagesForAchievement(achievement, blizzardId));
             }

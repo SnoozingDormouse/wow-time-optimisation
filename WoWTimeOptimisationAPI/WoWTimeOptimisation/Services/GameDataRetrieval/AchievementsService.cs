@@ -26,14 +26,16 @@ namespace WoWTimeOptimisation.Services.GameDataRetrieval
 
             foreach (int achievement in achievements)
             {
-                AddCriteriaToAchievementStages(achievement, achievementStages, faction);
+                achievementStages.AddRange(AddCriteriaToAchievementStages(achievement, faction));
             }
 
             return achievementStages;
         }
 
-        private void AddCriteriaToAchievementStages(int achievementId, List<AchievementStatus> achievementStages, int faction)
+        private IEnumerable<AchievementStatus> AddCriteriaToAchievementStages(int achievementId, int faction)
         {
+            var achievementStages = new List<AchievementStatus>();
+
             var achievementName = _achievementRepository.GetAchievementName(achievementId);
             var opposingFaction = GetOpposingFaction(faction);
 
@@ -54,8 +56,10 @@ namespace WoWTimeOptimisation.Services.GameDataRetrieval
 
             foreach (int subAchievementId in SubAchievements)
             {
-                AddCriteriaToAchievementStages((int)subAchievementId, achievementStages, faction);
+                achievementStages.AddRange(AddCriteriaToAchievementStages((int)subAchievementId, faction));
             };
+
+            return achievementStages;
         }
 
         private int GetOpposingFaction(int faction)

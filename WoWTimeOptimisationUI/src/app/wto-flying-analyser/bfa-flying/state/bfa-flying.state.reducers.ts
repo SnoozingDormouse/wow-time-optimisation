@@ -10,47 +10,20 @@ const bfaFlyingReducer = createReducer(
     on(BFAFlyingActions.updateAchievements,
         (state, { achievements }) => ({
             ...state,
-            achievements: UpdateAchievementCriteria(state, achievements) })),
+            achievements: _.cloneDeep(achievements)})),
     on(BFAFlyingActions.updateCharacterStepsAction,
         (state, { payload }) => ({
             ...state,
-            characterSteps: UpdateCharacterSteps(state, payload) }))
+            characterInfo: [
+                ...state.characterInfo,
+                {
+                    characterName: payload.characterName,
+                    characterSteps: _.cloneDeep(payload.characterSteps)
+                }
+            ]
+        }))
 );
 
-function UpdateAchievementCriteria(state: any, achievements: IAchievement[]): Array<IAchievement>  {
-
-    const a: Array<IAchievement> = _.cloneDeep(state.achievements);
-
-    achievements.forEach( ach =>
-    {
-        a.push(ach);
-    });
-
-
-    return a;
-}
-
-function UpdateCharacterSteps(state: any, payload: ICharacterStepStatus): Array<ICharacterStepStatus>  {
-
-    const cs: Array<ICharacterStepStatus> = _.cloneDeep(state.characterSteps);
-    let altered = false;
-
-    if (cs) {
-        cs.forEach(element => {
-            if (element.characterName.toLowerCase() === payload.characterName.toLowerCase())
-            {
-                element.characterSteps = payload.characterSteps;
-                altered = true;
-            }
-        });
-    }
-
-    if (altered === false) {
-        cs.push(payload);
-    }
-
-    return cs;
-};
 
 export function bfaFlyingStateReducer(state: IBFAFlyingState | undefined, action: Action) {
     return bfaFlyingReducer(state, action);

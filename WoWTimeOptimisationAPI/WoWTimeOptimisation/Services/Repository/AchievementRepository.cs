@@ -39,6 +39,18 @@ namespace WoWTimeOptimisation.Services
             return query;
         }
 
+        public IEnumerable<int> GetDescendentAchievementsForAchievement(int achievementId)
+        {
+            var commandText = "dbo.getDescendentAchievementsForAchievement";
+            var query =
+                ExecuteCommand(
+                    _connectionString,
+                    c => c.Query<int>(commandText, new { @AchievementId = achievementId }, commandType: System.Data.CommandType.StoredProcedure))
+                .ToList();
+
+            return query;
+        }
+
         public string GetGoalKey(string category, string expansion)
         {
             // eventually translate this to sql table

@@ -2,13 +2,12 @@
 	@AchievementId int = 0,
 	@BlizzardId int = 0
 AS
-	SELECT 
-		gc.CriteriaId,
-		cc.Amount,
-		cc.IsComplete
-	FROM dbo.GoalCriterias gc
-	INNER JOIN dbo.Criteria c ON gc.CriteriaId = c.Id
-	INNER JOIN dbo.CharacterCriterias cc ON c.Id = cc.CriteriaId
-	WHERE 
-		gc.AchievementId = @AchievementId
-		AND cc.CharacterId = @BlizzardId
+	SELECT
+	chc.CriteriaId,
+	chc.Amount,
+	chc.IsCompleted
+FROM dbo.AchievementCriterias ac
+JOIN dbo.CharacterCriterias chc on ac.CriteriaId = chc.CriteriaId
+WHERE 
+	chc.CharacterId = @BlizzardId
+	and ac.AchievementId = @AchievementId

@@ -65,7 +65,10 @@
     <Build Include="Stored Procedures\getCharacterProgressByCriteriaForAchievement.sql" />
     <Build Include="Stored Procedures\getBlizzardIdForCharacter.sql" />
     <Build Include="Stored Procedures\getAchievementName.sql" />
-    <Build Include="Tables\AnnotatedCriteriaDescription.sql" />
-    <Build Include="Tables\OrderedGoalAchievement.sql" />
+    <Build Include="Tables\GoalAchievement.sql" />
+    <Build Include="Stored Procedures\getDescendentAchievementsForAchievement.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="WoWTimeOptimization.Queries.refactorlog" />
   </ItemGroup>
 </Project>

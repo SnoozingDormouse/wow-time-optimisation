@@ -9,5 +9,6 @@ namespace WoWTimeOptimisation.Services
         IEnumerable<int> GetAchievementsByGoal(string goalKey);
         IEnumerable<Stage> GetStagesForAchievement(int achievementId);
         string GetAchievementName(int achievement);
+        IEnumerable<int> GetDescendentAchievementsForAchievement(int achievementId);
     }
 }

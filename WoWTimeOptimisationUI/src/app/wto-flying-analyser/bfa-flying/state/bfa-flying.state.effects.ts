@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, catchError, concatMap, switchMap } from 'rxjs/internal/operators';
+import { map, catchError, concatMap, switchMap, tap } from 'rxjs/internal/operators';
 import { BFAFlyingActionLabels } from './bfa-flying.state.types';
 import * as BFAFlyingActions from './bfa-flying.state.actions';
 import { ICharacterStepStatus } from './i-bfa-flying-state';
@@ -22,6 +22,7 @@ export class BFAFlyingStateEffects {
             ofType<AchievementActions>(BFAFlyingActionLabels.loadAchievements),
             switchMap(
                 () => this.flyingService.getAchievements().pipe(
+                    tap(s => { console.log('achievements: '); console.log(s) }),
                     map((s) => BFAFlyingActions.updateAchievements( { achievements: s }))))
           ));
 
@@ -31,9 +32,9 @@ export class BFAFlyingStateEffects {
                 concatMap(
                     ({ character }) =>
                         {
-                            console.log(character);
                             return this.flyingService.getCharacterSteps(character)
                                 .pipe(
+                                    tap(s => { console.log('character Steps: '); console.log(s) }),
                                     map(
                                         (s: ICharacterStepStatus) =>
                                             BFAFlyingActions.updateCharacterStepsAction({ payload: s })),

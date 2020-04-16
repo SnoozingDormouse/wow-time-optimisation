@@ -7,8 +7,7 @@ BEGIN
 
 	SELECT 
 		AchievementId 
-	FROM dbo.OrderedGoalAchievement o 
+	FROM dbo.GoalAchievement o 
 	WHERE o.GoalId = @goalId
-	ORDER BY o.[Order] ASC
 
 END

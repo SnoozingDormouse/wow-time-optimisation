@@ -44,9 +44,9 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
         AngularMaterialModule,
 
         // program modules
-        CharacterModule,
         WtoCommonComponentsModule,
         WtoFlyingAnalyserModule,
+        CharacterModule,
 
         // Font-awesome
         FontAwesomeModule

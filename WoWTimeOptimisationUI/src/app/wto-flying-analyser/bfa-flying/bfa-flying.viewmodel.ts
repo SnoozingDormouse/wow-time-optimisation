@@ -24,7 +24,7 @@ interface ICriteria {
 
 interface ICharCompleted {
     criteriaId: number;
-    iscomplete: boolean;
+    isCompleted: boolean;
     amount: number;
 }
 
@@ -34,12 +34,18 @@ export class AchievementViewModel {
     public populateViewModel(state: IBFAFlyingState): IAchievementViewModel {
 
         const viewModel: IAchievementViewModel = { achievements: [] };
+        const characters: Array<string> = [];
+        const displayedColumns: Array<string> = [ 'criteria' ];
+
+        state.characterInfo.forEach(namedCharacter =>
+            {
+                characters.push(namedCharacter.characterName);
+                displayedColumns.push(namedCharacter.characterName);
+            });
 
         state.achievements.forEach(ach =>
         {
             const viewTableModel: Array<ICriteriaRowViewNode> = [];
-            const characters: Array<string> = [];
-            const displayedColumns: Array<string> = [ 'criteria' ];
 
             ach.stages.map(x => {
                 viewTableModel.push(
@@ -50,17 +56,15 @@ export class AchievementViewModel {
 
             let index = 0;
 
-            state.characterSteps.forEach(namedCharacter =>
+            state.characterInfo.forEach(namedCharacter =>
                 {
-                    characters.push(namedCharacter.characterName);
-                    displayedColumns.push(namedCharacter.characterName);
 
                     namedCharacter.characterSteps
                     .map(cs => {
                         viewTableModel
                         .filter( v => v.criteria.criteriaId === cs.criteriaId)
                         .map(e => e.charscompleted[index] =
-                            { criteriaId: cs.criteriaId, iscomplete: cs.isComplete, amount: cs.amount });
+                            { criteriaId: cs.criteriaId, isCompleted: cs.isCompleted, amount: cs.amount });
                     });
                     index++;
                 }

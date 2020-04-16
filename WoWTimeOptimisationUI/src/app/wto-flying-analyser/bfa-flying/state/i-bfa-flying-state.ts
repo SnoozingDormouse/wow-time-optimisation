@@ -2,7 +2,7 @@ import { ICharacter } from 'src/app/characters/state/i-character-state';
 
 export interface IBFAFlyingState {
     achievements: Array<IAchievement>;
-    characterSteps: Array<ICharacterStepStatus>;
+    characterInfo: Array<ICharacterStepStatus>;
 }
 
 export interface IAchievement {
@@ -30,7 +30,7 @@ export enum IStepType {
 export interface IStepStatus {
     criteriaId: number;
     amount: number;
-    isComplete: boolean;
+    isCompleted: boolean;
 }
 
 export interface ICharacterStepStatus {

@@ -1,35 +1,30 @@
-import { ICharacterState, ICharacter } from './i-character-state';
-import { CharacterStateAction } from './character-state.index';
-import { initialCharacterState } from './character-state.initializers';
+import { ICharacterState } from './i-character-state';
 import { createReducer, on, Action } from '@ngrx/store';
 import * as CharacterActions from './character-state.actions';
-import { CharacterActionLabels } from './character-state.types';
+import { initialCharacterState } from './character-state.initializers';
 
-/*
-export const CharacterStateType  = {
-    characters: '[CharacterState] Character Related Actions'
-};
-
-export function characterStateReducer(state: ICharacterState = initialCharacterState, action: CharacterStateAction) {
-    switch (action.type) {
-        case CharacterStateType.characters:
-            return { ...state, characters: action.payload };
-
-        default:
-            return state;
-    }
-}
-*/
 
 const characterReducer = createReducer(
-    on(
-        CharacterActions.updateCharacter,
-        (state: ICharacterState, { character }) => ({
+    initialCharacterState,
+    on(CharacterActions.updateCharacter, (state: ICharacterState, { character }) => ({
             ...state,
-            characters: []
+            characters: [
+                ...state.characters,
+                {
+                    useraccountId: character.useraccountId,
+                    name: character.name,
+                    realm: character.realm,
+                    faction: character.faction,
+                    characterClass: character.characterClass,
+                    level: character.level,
+                    blizzardId: character.blizzardId,
+                    lastUpdatedDateTime: character.lastUpdatedDateTime,
+                    active: false,
+                }
+            ]
         }))
 );
 
 export function characterStateReducer(state: ICharacterState | undefined, action: Action) {
-    return characterReducer(state: On< {characters: ICharacter[] }, action);
+    return characterReducer(state, action);
 }

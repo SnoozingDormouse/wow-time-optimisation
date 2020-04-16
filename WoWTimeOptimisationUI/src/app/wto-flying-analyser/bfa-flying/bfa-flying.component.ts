@@ -41,7 +41,8 @@ export class BfaFlyingComponent implements OnInit, OnDestroy {
         this.observer = {
             next: (state: IBFAFlyingState) => {
                 this.dataSource = this.viewModel.populateViewModel(state);
-                console.log(this.dataSource);
+                //console.log('from flying component - achievements:')
+                //console.log(state.achievements);
             },
             error: (err: any) => {},
             complete: () => {}

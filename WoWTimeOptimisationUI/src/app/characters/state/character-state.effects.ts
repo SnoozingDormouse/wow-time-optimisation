@@ -23,7 +23,6 @@ export class CharacterStateEffects {
             concatMap(
                 ({ character }) =>
                     {
-                        console.log(character);
                         return this.characterService.updateCharacterInformationOnServer(character)
                             .pipe(
                                 map(
