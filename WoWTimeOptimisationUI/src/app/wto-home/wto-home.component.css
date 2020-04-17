@@ -1,0 +1,16 @@
+.character-card {
+    max-width: 400px;
+    margin-top: 5%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+  }
+
+  .alliance-header-image {
+    background-image: url('./assets/Alliance-Logo2.png');
+    background-size: cover;
+  }
+
+  .horde-header-image {
+    background-image: url('./assets/Horde-Logo2.png');
+    background-size: cover;
+  }

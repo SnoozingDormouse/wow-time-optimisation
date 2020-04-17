@@ -14,6 +14,12 @@ export const updateCharacter = createAction(
     props<{ character: ICharacter }>()
 );
 
+export const toggleCharacterActive = createAction(
+    CharacterActionLabels.toggleCharacterActive,
+    props<{ character: ICharacter }>()
+);
+
+
 const characterActions = union(
     { loadCharacterOnServer }
 );

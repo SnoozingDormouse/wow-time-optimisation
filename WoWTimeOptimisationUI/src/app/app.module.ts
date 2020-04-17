@@ -19,6 +19,8 @@ import * as fromCharacterState from 'src/app/characters/state/character-state.in
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { WtoHomeComponent } from './wto-home/wto-home.component';
+import { WtoHomeModule } from './wto-home/wto-home.module';
 
 
 @NgModule({
@@ -44,9 +46,11 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
         AngularMaterialModule,
 
         // program modules
+        WtoHomeModule,
         WtoCommonComponentsModule,
         WtoFlyingAnalyserModule,
         CharacterModule,
+
 
         // Font-awesome
         FontAwesomeModule

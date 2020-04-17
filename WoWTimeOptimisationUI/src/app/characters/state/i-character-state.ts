@@ -1,5 +1,5 @@
 export interface ICharacterState {
-    faction: number;
+    activeCharFaction: number;
     characters: Array<ICharacter>
 }
 
@@ -9,6 +9,7 @@ export interface ICharacter {
     realm: string;
     faction?: number;
     characterClass?: string;
+    race?: string;
     level?: number;
     blizzardId?: number;
     lastUpdatedDateTime?: Date;

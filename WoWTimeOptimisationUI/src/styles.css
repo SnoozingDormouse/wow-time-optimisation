@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '../node_modules/@angular/material/prebuilt-themes/purple-green.css';
 
 .mat-sidenav {
     width: 20%;
@@ -11,4 +11,8 @@
     margin-right: 10%;
     margin-bottom: 5%;
     height: 100%;
+}
+
+.fill-space {
+    flex: 1 1 auto;
 }

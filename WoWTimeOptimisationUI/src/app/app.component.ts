@@ -4,7 +4,7 @@ import { IApplicationState } from './state/i-application-state';
 import { Observer } from 'rxjs';
 import { map } from 'rxjs/internal/operators';
 import { IUIState, selectUIState } from './state/ui-state/ui.state.index';
-import { loadCharacterOnServer, ICharacter, selectActiveCharactersState } from './characters/state/character-state.index';
+import { loadCharacterOnServer, ICharacter, selectActiveCharactersState, selectCharactersState } from './characters/state/character-state.index';
 
 
 @Component({
@@ -38,7 +38,9 @@ export class AppComponent implements OnInit, OnDestroy{
 
         // get the characters
         this.characterSubscription =
-        this.store.pipe(map(state => selectActiveCharactersState(state))).subscribe(v => { this.characters = v.characters })
+        this.store
+        .pipe(map(state => selectCharactersState(state)))
+        .subscribe(v => {this.characters = v.characters })
 
         // dispatch request to update the information on the server for the selected characters
         this.characters.forEach(character => {

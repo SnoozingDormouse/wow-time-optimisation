@@ -16,8 +16,11 @@ export class BfaFlyingService {
         private store: Store<IApplicationState>,
         private httpClient: HttpClient) { }
 
-    public getAchievements(): Observable<IAchievement[]>  {
-        return this.httpClient.get<IAchievement[]>(this.apiURL);
+    public getAchievements(activeCharFaction: number): Observable<IAchievement[]>  {
+        if (!activeCharFaction)
+            activeCharFaction = 0;
+        const factionFilteredURL =  `${this.apiURL}/${activeCharFaction}`;
+        return this.httpClient.get<IAchievement[]>(factionFilteredURL);
     }
 
     public getCharacterSteps(character: ICharacter): Observable<ICharacterStepStatus> {

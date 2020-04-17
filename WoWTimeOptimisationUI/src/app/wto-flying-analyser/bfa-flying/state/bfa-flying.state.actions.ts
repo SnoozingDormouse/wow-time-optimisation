@@ -7,7 +7,8 @@ import { ICharacter } from 'src/app/characters/state/i-character-state';
 export const initialiseAction = createAction(BFAFlyingActionLabels.initialise);
 
 export const loadAchievements = createAction(
-    BFAFlyingActionLabels.loadAchievements
+    BFAFlyingActionLabels.loadAchievements,
+    props<{ activeCharFaction: number }>()
 );
 
 export const updateAchievements = createAction(
@@ -37,4 +38,9 @@ const achievementActions = union(
 
 export type AchievementActions = typeof achievementActions;
 
+const factionActions = union(
+    { loadAchievements }
+);
+
+export type FactionActions = typeof factionActions;
 

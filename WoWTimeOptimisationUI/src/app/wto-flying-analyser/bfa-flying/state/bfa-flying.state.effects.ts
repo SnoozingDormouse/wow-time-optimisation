@@ -6,7 +6,7 @@ import { BFAFlyingActionLabels } from './bfa-flying.state.types';
 import * as BFAFlyingActions from './bfa-flying.state.actions';
 import { ICharacterStepStatus } from './i-bfa-flying-state';
 import { BfaFlyingService } from '../bfa-flying.service';
-import { CharacterActions, AchievementActions } from './bfa-flying.state.actions';
+import { CharacterActions, AchievementActions, FactionActions } from './bfa-flying.state.actions';
 
 @Injectable()
 export class BFAFlyingStateEffects {
@@ -19,9 +19,9 @@ export class BFAFlyingStateEffects {
 
     loadSteps$ = createEffect(
         () => this.actions$.pipe(
-            ofType<AchievementActions>(BFAFlyingActionLabels.loadAchievements),
+            ofType<FactionActions>(BFAFlyingActionLabels.loadAchievements),
             switchMap(
-                () => this.flyingService.getAchievements().pipe(
+                ({activeCharFaction}) => this.flyingService.getAchievements(activeCharFaction).pipe(
                     tap(s => { console.log('achievements: '); console.log(s) }),
                     map((s) => BFAFlyingActions.updateAchievements( { achievements: s }))))
           ));

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CharacterService {
-    apiURL = 'http://localhost:50421/api/CharacterData/Update';
+    apiURL = 'https://localhost:44326/api/CharacterData/Update';
 
     constructor(
         private httpClient: HttpClient) { }

@@ -31,8 +31,9 @@ namespace WoWTimeOptimisation
                options.AddPolicy(AllowSpecificOrigins,
                    builder =>
                    {
-                       builder.WithOrigins("http://localhost:4200");
-                       builder.WithOrigins("http://localhost:51754");
+                       builder.WithOrigins("http://localhost:4200")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
                    });
             });
 

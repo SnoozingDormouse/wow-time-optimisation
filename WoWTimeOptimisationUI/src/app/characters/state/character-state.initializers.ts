@@ -85,7 +85,7 @@ const defaultCharacter14: ICharacter = {
 }
 
 export const initialCharacterState: ICharacterState = {
-    faction: 0,
+    activeCharFaction: 0,
     characters: [
         defaultCharacter1,
         defaultCharacter2,

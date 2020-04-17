@@ -1,5 +1,6 @@
 import { IBFAFlyingState } from './state/i-bfa-flying-state';
 import { Injectable } from '@angular/core';
+import { ICharacterState, ICharacter } from 'src/app/characters/state/i-character-state';
 
 export interface IAchievementViewModel {
     achievements: Array<IAchievementTableViewModel>
@@ -31,16 +32,16 @@ interface ICharCompleted {
 @Injectable()
 export class AchievementViewModel {
 
-    public populateViewModel(state: IBFAFlyingState): IAchievementViewModel {
+    public populateViewModel(state: IBFAFlyingState, activeCharacters: ICharacter[]): IAchievementViewModel {
 
         const viewModel: IAchievementViewModel = { achievements: [] };
         const characters: Array<string> = [];
         const displayedColumns: Array<string> = [ 'criteria' ];
 
-        state.characterInfo.forEach(namedCharacter =>
+        activeCharacters.forEach(namedCharacter =>
             {
-                characters.push(namedCharacter.characterName);
-                displayedColumns.push(namedCharacter.characterName);
+                characters.push(namedCharacter.name);
+                displayedColumns.push(namedCharacter.name);
             });
 
         state.achievements.forEach(ach =>

@@ -1,7 +1,3 @@
 .mat-toolbar-text {
     color: primary;
 }
-
-.fill-space {
-    flex: 1 1 auto;
-}
