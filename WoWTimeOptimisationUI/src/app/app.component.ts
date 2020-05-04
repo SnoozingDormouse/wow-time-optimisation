@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy{
         this.characterSubscription =
         this.store
         .pipe(map(state => selectCharactersState(state)))
-        .subscribe(v => {this.characters = v.characters })
+        .subscribe(v => { this.characters = v.characters })
 
         // dispatch request to update the information on the server for the selected characters
         this.characters.forEach(character => {

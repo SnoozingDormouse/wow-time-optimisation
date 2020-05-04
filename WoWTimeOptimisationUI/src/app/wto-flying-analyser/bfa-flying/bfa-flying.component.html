@@ -15,7 +15,7 @@
                         <div *ngIf="(element.charscompleted[achievement.headers.indexOf(header)].isCompleted); else elseBlock">
                             <span><fa-icon [icon]="faCheckCircle" [styles]="{'color': 'green'}"></fa-icon></span></div>
                         <ng-template #elseBlock>
-                            <div *ngIf="(element.charscompleted[achievement.headers.indexOf(header)].amount > 0)">{{ element.charscompleted[achievement.headers.indexOf(header)].amount }}</div>
+                            <div *ngIf="(element.charscompleted[achievement.headers.indexOf(header)].amount < 0 || element.charscompleted[achievement.headers.indexOf(header)].amount > 1)">{{ element.charscompleted[achievement.headers.indexOf(header)].amount }}</div>
                         </ng-template>
                     </ng-container>
                 </td>

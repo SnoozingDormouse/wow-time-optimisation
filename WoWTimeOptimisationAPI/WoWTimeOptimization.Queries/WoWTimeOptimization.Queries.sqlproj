@@ -67,6 +67,7 @@
     <Build Include="Stored Procedures\getAchievementName.sql" />
     <Build Include="Tables\GoalAchievement.sql" />
     <Build Include="Stored Procedures\getDescendentAchievementsForAchievement.sql" />
+    <Build Include="getCompletedStatusIfMultipleCriteria.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WoWTimeOptimization.Queries.refactorlog" />

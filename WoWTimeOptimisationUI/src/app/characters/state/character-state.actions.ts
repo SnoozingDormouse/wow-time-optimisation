@@ -19,10 +19,15 @@ export const toggleCharacterActive = createAction(
     props<{ character: ICharacter }>()
 );
 
-
-const characterActions = union(
-    { loadCharacterOnServer }
+export const updateActiveFaction = createAction(
+    CharacterActionLabels.updateActiveFaction
 );
 
-export type CharacterAction = typeof characterActions;
+const loadAction = union(
+    { loadCharacterOnServer}
+);
+
+export type LoadCharacterAction = typeof loadAction;
+
+
 
